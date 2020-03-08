@@ -83,6 +83,9 @@
     <Compile Include="Models\MealTrackingModels\HealthierOptions.cs" />
     <Compile Include="Models\MealTrackingModels\MealType.cs" />
     <Compile Include="Models\MealTrackingModels\Favorites.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Day.cs" />
+    <Compile Include="Models\ExerciseLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
