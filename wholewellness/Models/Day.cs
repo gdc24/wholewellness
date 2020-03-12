@@ -30,7 +30,7 @@ namespace wholewellness.Models
 
         public Day of(List<Meal> mealsAdded, List<WorkoutRoutine> exerciseCompleted, int caloriesRemaining)
         {
-            return new Day(Meal, exerciseCompleted, caloriesRemaining);
+            return new Day(mealsAdded, exerciseCompleted, caloriesRemaining);
         }
     }
 }
