@@ -9,26 +9,28 @@ namespace wholewellness.Models.ExerciseTrackingModels
     {
 
         [Key]
+        [Display(Name = "Workout Routine ID")]
+        public int intWorkoutRoutineID { get; set; }
 
-        [Display(Name = "Time")]
-        public int time { get; set; }
+        [Display(Name = "Total Workout Routine Minutes")]
+        public int intTotalMinutes { get; set; }
 
         [Display(Name = "Routine")]
-        public List<ExerciseType> routine { get; set; }
+        public List<ExerciseType> lstRoutine { get; set; }
 
         [Display(Name = "Total Calories Burned")]
-        public int totalCaloriesBurned { get; set; }
+        public int intTotalCalsBurned { get; set; }
 
-        public WorkoutRoutine(int time, List<ExerciseType> routine, int totalCaloriesBurned)
+        public WorkoutRoutine(int intTotalMinutes, List<ExerciseType> lstRoutine, int intTotalCalsBurned)
         {
-            this.time = time;
-            this.routine = routine;
-            this.totalCaloriesBurned = totalCaloriesBurned;
+            this.intTotalMinutes = intTotalMinutes;
+            this.routine = lstRoutine;
+            this.totalCaloriesBurned = intTotalCalsBurned;
         }
 
-        public WorkoutRoutine of(int time, List<ExerciseType> routine, int totalCaloriesBurned)
+        public WorkoutRoutine of(int intTotalMinutes, List<ExerciseType> lstRoutine, int intTotalCalsBurned)
         {
-            return new WorkoutRoutine(time, routine, totalCaloriesBurned);
+            return new WorkoutRoutine(intTotalMinutes, lstRoutine, intTotalCalsBurned);
         }
     }
 }

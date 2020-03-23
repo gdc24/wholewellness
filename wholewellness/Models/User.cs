@@ -9,45 +9,47 @@ namespace wholewellness.Models
     {
 
         [Key]
+        [Display(Name = "User ID")]
+        public int intUserID { get; set; }
 
         [Display(Name = "Username")]
-        public String username { get; set; }
+        public String strUsername { get; set; }
 
         [Display(Name = "Weight")]
-        public double weight { get; set; }
+        public int intWeight { get; set; }
 
         [Display(Name = "Height (In Inches)")]
-        public double heightInInches { get; set; }
+        public int intHeightInInches { get; set; }
 
         [Display(Name = "Exercise Level")]
         public ExerciseLevel exerciseLevel { get; set; }
 
         [Display(Name = "Alloted Calories")]
-        public int allotedCalories { get; set; }
+        public int intAllotedCalories { get; set; }
 
         [Display(Name = "Alloted Exercise Minutes")]
-        public int allotedExerciseMinutes { get; set; }
+        public int intAllotedExerciseMinutes { get; set; }
 
         [Display(Name = "History")]
-        public List<Day> history { get; set; }
+        public List<Day> lstHistory { get; set; }
 
 
-        public User(String username, double weight, double heightInInches, ExerciseLevel exerciseLevel, int allotedCalories,
-            int allotedExerciseMinutes, List<Day> history)
+        public User(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+            int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
-            this.username = username;
-            this.weight = weight;
-            this.heightInInches = heightInInches;
+            this.strUsername = strUsername;
+            this.intWeight = intWeight;
+            this.intHeightInInches = intHeightInInches;
             this.exerciseLevel = exerciseLevel;
-            this.allotedCalories = allotedCalories;
-            this.allotedExerciseMinutes = allotedExerciseMinutes;
-            this.history = history;
+            this.intAllotedCalories = intAllotedCalories;
+            this.intAllotedExerciseMinutes = intAllotedExerciseMinutes;
+            this.lstHistory = lstHistory;
         }
 
-        public User of(String username, double weight, double heightInInches, ExerciseLevel exerciseLevel, int allotedCalories,
-            int allotedExerciseMinutes, List<Day> history)
+        public User of(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+            int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
-            return new User(username, weight, heightInInches, exerciseLevel, allotedCalories, allotedExerciseMinutes, history);
+            return new User(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
         }
     }
 }

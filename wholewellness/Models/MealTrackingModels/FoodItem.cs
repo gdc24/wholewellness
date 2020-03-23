@@ -9,31 +9,31 @@ namespace wholewellness.Models
     public class FoodItem
     {
         [Key]
-
         [Display(Name = "Food Item ID")]
-        public int foodItemID { get; set; }
+        public int intFoodItemID { get; set; }
 
         [Display(Name = "Name")]
-        public String name { get; set; }
+        public String strName { get; set; }
 
         [Display(Name = "Calories")]
-        public int calories { get; set; }
+        public int intCalories { get; set; }
 
         [Display(Name = "Brand Name")]
-        public String brandName { get; set; }
+        public String? strBrandName { get; set; }
 
 
-        public FoodItem(int foodItemID, String name, int calories, String brandName) 
+        private FoodItem(int intFoodItemID, String strName, int intCalories, String? strBrandName) 
         {
-            this.foodItemID = foodItemID;
-            this.name = name;
-            this.calories = calories;
-            this.brandName = brandName;
+            this.intFoodItemID = intFoodItemID;
+            this.strName = strName;
+            this.intCalories = intCalories;
+            if (strBrandName != null)
+                this.strBrandName = strBrandName;
         }
 
-        public FoodItem of(int foodItemID, String name, int calories, String brandName)
+        public FoodItem of(int intFoodItemID, String strName, int intCalories, String? strBrandName)
         {
-            return new FoodItem(foodItemID, name, calories, brandName);
+            return new FoodItem(intFoodItemID, strName, intCalories, strBrandName);
         }
     }
 }

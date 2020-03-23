@@ -8,41 +8,43 @@ namespace wholewellness.Models.ExerciseTrackingModels
     public class ExerciseType
     {
         [Key]
+        [Display(Name = "Exercise Type ID")]
+        public int intExerciseTypeID { get; set; }
 
         [Display(Name = "Muscle Groups")]
-        public List<MuscleGroup> muscleGroups { get; set; }
+        public List<MuscleGroup> lstMuscleGroups { get; set; }
 
         [Display(Name = "Name")]
-        public String name { get; set; }
+        public String strName { get; set; }
 
         [Display(Name = "Calories Burned")]
-        public int caloriesBurned { get; set; }
+        public int intCaloriesBurned { get; set; }
 
         [Display(Name = "Accessibility")]
-        public Boolean accessibility { get; set; }
+        public Boolean ysnAccessibility { get; set; }
 
         [Display(Name = "Intensity")]
         public Intensity intensity { get; set; }
 
 
         [Display(Name = "Time")]
-        public int time { get; set; }
+        public int intTime { get; set; }
 
-        public ExerciseType(List<MuscleGroup> muscleGroups, String name, int caloriesBurned, Boolean accessibility,
-            Intensity intensity, int time)
+        private ExerciseType(List<MuscleGroup> lstMuscleGroups, String strName, int intCaloriesBurned, Boolean ysnAccessibility,
+            Intensity intensity, int intTime)
         {
-            this.muscleGroups = muscleGroups;
-            this.name = name;
-            this.caloriesBurned = caloriesBurned;
-            this.accessibility = accessibility;
+            this.lstMuscleGroups = lstMuscleGroups;
+            this.strName = strName;
+            this.intCaloriesBurned = intCaloriesBurned;
+            this.ysnAccessibility = ysnAccessibility;
             this.intensity = intensity;
-            this.time = time;
+            this.intTime = intTime;
         }
 
-        public ExerciseType of(List<MuscleGroup> muscleGroups, String name, int caloriesBurned, Boolean accessibility,
-            Intensity intensity, int time)
+        public ExerciseType of(List<MuscleGroup> lstMuscleGroups, String strName, int intCaloriesBurned, Boolean ysnAccessibility,
+            Intensity intensity, int intTime)
         {
-            return new ExerciseType(muscleGroups, name, caloriesBurned, accessibility, intensity, time);
+            return new ExerciseType(lstMuscleGroups, strName, intCaloriesBurned, ysnAccessibility, intensity, intTime);
         }
     }
 }
