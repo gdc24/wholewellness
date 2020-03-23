@@ -32,16 +32,16 @@ CREATE TYPE equipment AS ENUM (
 CREATE TABLE "user" (
   "intUserID" SERIAL PRIMARY KEY,
   "strUsername" varchar UNIQUE NOT NULL,
-  "weight" int NOT NULL,
-  "heightInInches" int NOT NULL,
+  "intWeight" int NOT NULL,
+  "intHeightInInches" int NOT NULL,
   "exerciseLevel" intensity NOT NULL,
-  "allotedCalorites" int NOT NULL,
-  "allotedExerciseMinutes" int NOT NULL
+  "intAllotedCalorites" int NOT NULL,
+  "intAllotedExerciseMinutes" int NOT NULL
 );
 
 CREATE TABLE "day" (
   "intDayID" SERIAL PRIMARY KEY,
-  "dtm" date NOT NULL,
+  "dtmDate" date NOT NULL,
   "intCalsLeft" int NOT NULL,
   "intUserID" int NOT NULL
 );
@@ -69,6 +69,12 @@ CREATE TABLE "meal" (
   "intMealID" SERIAL PRIMARY KEY,
   "mealType" mealType NOT NULL,
   "intUserID" int NOT NULL
+);
+
+CREATE TABLE "foodMeal" (
+  "intFoodMealID" SERIAL PRIMARY KEY,
+  "intMealID" int NOT NULL,
+  "intFoodItemID" int NOT NULL
 );
 
 CREATE TABLE "favoritesFood" (
@@ -129,6 +135,10 @@ ALTER TABLE "dayExercise" ADD FOREIGN KEY ("intDayID") REFERENCES "day" ("intDay
 ALTER TABLE "dayExercise" ADD FOREIGN KEY ("intWorkoutRoutineID") REFERENCES "workoutRoutine" ("intWorkoutRoutineID");
 
 ALTER TABLE "meal" ADD FOREIGN KEY ("intUserID") REFERENCES "user" ("intUserID");
+
+ALTER TABLE "foodMeal" ADD FOREIGN KEY ("intMealID") REFERENCES "meal" ("intMealID");
+
+ALTER TABLE "foodMeal" ADD FOREIGN KEY ("intFoodItemID") REFERENCES "foodItem" ("intFoodItemID");
 
 ALTER TABLE "favoritesFood" ADD FOREIGN KEY ("intUserID") REFERENCES "user" ("intUserID");
 
