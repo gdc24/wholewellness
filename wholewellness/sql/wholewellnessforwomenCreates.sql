@@ -71,6 +71,12 @@ CREATE TABLE "meal" (
   "intUserID" int NOT NULL
 );
 
+CREATE TABLE "foodMeal" (
+  "intFoodMealID" SERIAL PRIMARY KEY,
+  "intMealID" int NOT NULL,
+  "intFoodItemID" int NOT NULL
+);
+
 CREATE TABLE "favoritesFood" (
   "intFavoritesFoodID" SERIAL PRIMARY KEY,
   "intUserID" int NOT NULL,
@@ -129,6 +135,10 @@ ALTER TABLE "dayExercise" ADD FOREIGN KEY ("intDayID") REFERENCES "day" ("intDay
 ALTER TABLE "dayExercise" ADD FOREIGN KEY ("intWorkoutRoutineID") REFERENCES "workoutRoutine" ("intWorkoutRoutineID");
 
 ALTER TABLE "meal" ADD FOREIGN KEY ("intUserID") REFERENCES "user" ("intUserID");
+
+ALTER TABLE "foodMeal" ADD FOREIGN KEY ("intMealID") REFERENCES "meal" ("intMealID");
+
+ALTER TABLE "foodMeal" ADD FOREIGN KEY ("intFoodItemID") REFERENCES "foodItem" ("intFoodItemID");
 
 ALTER TABLE "favoritesFood" ADD FOREIGN KEY ("intUserID") REFERENCES "user" ("intUserID");
 
