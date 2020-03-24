@@ -14,6 +14,9 @@ namespace wholewellness.Models
         [Display(Name = "Day ID")]
         public int intDayID { get; set; }
 
+        [Display(Name = "Date")]
+        public DateTime dtmDate { get; set; }
+
         [Display(Name = "Meals Added")]
         public List<Meal> lstMealsAdded { get; set; }
 
@@ -23,16 +26,17 @@ namespace wholewellness.Models
         [Display(Name = "Calories Remaining")]
         public int intCalsLeft { get; set; }
 
-        public Day(List<Meal> lstMealsAdded, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
+        public Day(List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
         {
             this.lstMealsAdded = lstMealsAdded;
+            this.dtmDate = dtmDate;
             this.lstExerciseCompleted = lstExerciseCompleted;
             this.intCalsLeft = intCalsLeft;
         }
 
-        public Day of(List<Meal> lstMealsAdded, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
+        public static Day of(List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
         {
-            return new Day(lstMealsAdded, lstExerciseCompleted, intCalsLeft);
+            return new Day(lstMealsAdded, dtmDate, lstExerciseCompleted, intCalsLeft);
         }
     }
 }

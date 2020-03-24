@@ -13,7 +13,7 @@ namespace wholewellness.Models
         public int intUserID { get; set; }
 
         [Display(Name = "Username")]
-        public String strUsername { get; set; }
+        public string strUsername { get; set; }
 
         [Display(Name = "Weight")]
         public int intWeight { get; set; }
@@ -34,7 +34,7 @@ namespace wholewellness.Models
         public List<Day> lstHistory { get; set; }
 
 
-        public User(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        public User(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
             this.strUsername = strUsername;
@@ -46,7 +46,7 @@ namespace wholewellness.Models
             this.lstHistory = lstHistory;
         }
 
-        public static User of(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        public static User of(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
             return new User(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);

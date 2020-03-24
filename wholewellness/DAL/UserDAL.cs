@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Npgsql;
+using wholewellness.DAL;
 using wholewellness.Models;
 
 /// <summary>
@@ -15,7 +17,7 @@ public class UserDAL
         int intWeight = Convert.ToInt32(dr["intWeight"]);
         int intHeightInInches = Convert.ToInt32(dr["intHeightInInches"]);
         string strExerciseLevel = dr["exerciseLevel"].ToString();
-        ExerciseLevel exerciseLevel = Enum.Parse(ExerciseLevel, strExerciseLevel, true);
+        ExerciseLevel exerciseLevel = (ExerciseLevel)Enum.Parse(typeof(ExerciseLevel), strExerciseLevel, true);
         int intAllotedCalories = Convert.ToInt32(dr["intAllotedCalories"]);
         int intAllotedExerciseMinutes = Convert.ToInt32(dr["intAllotedExerciseMinutes"]);
         List<Day> lstHistory = DayDAL.GetDaysByUser(intUserID).ToList();

@@ -13,16 +13,16 @@ namespace wholewellness.Models
         public int intFoodItemID { get; set; }
 
         [Display(Name = "Name")]
-        public String strName { get; set; }
+        public string strName { get; set; }
 
         [Display(Name = "Calories")]
         public int intCalories { get; set; }
 
         [Display(Name = "Brand Name")]
-        public String? strBrandName { get; set; }
+        public string strBrandName { get; set; }
 
 
-        private FoodItem(int intFoodItemID, String strName, int intCalories, String? strBrandName) 
+        private FoodItem(int intFoodItemID, string strName, int intCalories, string strBrandName) 
         {
             this.intFoodItemID = intFoodItemID;
             this.strName = strName;
@@ -31,7 +31,7 @@ namespace wholewellness.Models
                 this.strBrandName = strBrandName;
         }
 
-        public FoodItem of(int intFoodItemID, String strName, int intCalories, String? strBrandName)
+        public FoodItem of(int intFoodItemID, string strName, int intCalories, string strBrandName)
         {
             return new FoodItem(intFoodItemID, strName, intCalories, strBrandName);
         }
