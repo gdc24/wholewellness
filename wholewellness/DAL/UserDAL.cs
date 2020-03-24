@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Npgsql;
 using wholewellness.Models;
 
@@ -7,21 +8,20 @@ using wholewellness.Models;
 /// </summary>
 public class UserDAL
 {
-	public UserDAL()
-	{
-		private static User GetUserFromDR(NpgsqlDataReader dr)
-        {
-            int intUserID = Convert.ToInt32(dr["intUserID"]);
-            string strUsername = dr["strUsername"].ToString();
-            int intWeight = Convert.ToInt32(dr["intWeight"]);
-            int intHeightInInches = Convert.ToInt32(dr["intHeightInInches"]);
-            ExerciseLevel exerciseLevel = Enum.Parse(wholewellness.Models.ExerciseLevel, dr["exerciseLevel"].ToString());
-            int intAllotedCalories = Convert.ToInt32(dr["intAllotedCalories"]);
-            int intAllotedExerciseMinutes = Convert.ToInt32(dr["intAllotedExerciseMinutes"]);
+    private static User GetUserFromDR(NpgsqlDataReader dr)
+    {
+        int intUserID = Convert.ToInt32(dr["intUserID"]);
+        string strUsername = dr["strUsername"].ToString();
+        int intWeight = Convert.ToInt32(dr["intWeight"]);
+        int intHeightInInches = Convert.ToInt32(dr["intHeightInInches"]);
+        string strExerciseLevel = dr["exerciseLevel"].ToString();
+        ExerciseLevel exerciseLevel = Enum.Parse(ExerciseLevel, strExerciseLevel, true);
+        int intAllotedCalories = Convert.ToInt32(dr["intAllotedCalories"]);
+        int intAllotedExerciseMinutes = Convert.ToInt32(dr["intAllotedExerciseMinutes"]);
+        List<Day> lstHistory = DayDAL.GetDaysByUser(intUserID).ToList();
 
-            User user = User.of(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes);
+        User user = User.of(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
 
-            return user;
-        }
-	}
+        return user;
+    }
 }

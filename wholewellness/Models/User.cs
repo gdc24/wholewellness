@@ -46,7 +46,7 @@ namespace wholewellness.Models
             this.lstHistory = lstHistory;
         }
 
-        public User of(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        public static User of(String strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
             return new User(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
