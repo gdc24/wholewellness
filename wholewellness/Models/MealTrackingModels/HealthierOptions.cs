@@ -8,7 +8,6 @@ namespace wholewellness.Models
     public class HealthierOptions
     {
         [Key]
-
         [Display(Name = "Original")]
         public FoodItem original;
 

@@ -16,8 +16,8 @@ namespace wholewellness.DAL
             DateTime dtmDate = (DateTime)dr["dtmDate"];
             int intCalsLeft = Convert.ToInt32(dr["intCalsLeft"]);
             int intUserID = Convert.ToInt32(dr["intUserID"]);
-            List<Meal> lstMealsAdded = MealDAL.GetMealsByDayAndUser(intDayID, intUserID);
-            List<WorkoutRoutine> lstWorkoutRoutines = WorkoutRoutinesDAL.GetExercisesByDayAndUser(intDayID, intUserID);
+            List<Meal> lstMealsAdded = null; // MealDAL.GetMealsByDayAndUser(intDayID, intUserID);
+            List<WorkoutRoutine> lstWorkoutRoutines = null; // WorkoutRoutinesDAL.GetExercisesByDayAndUser(intDayID, intUserID);
 
             Day day = Day.of(lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft);
 
