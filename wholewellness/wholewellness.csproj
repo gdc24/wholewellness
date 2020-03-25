@@ -110,8 +110,7 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\ViewModels\" />
-    <Folder Include="Views\ViewModels\CRUD_VMs\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -134,9 +133,10 @@
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\ExerciseLevel.cs" />
     <Compile Include="DAL\UserDAL.cs" />
-    <Compile Include="Views\ViewModels\CRUD_VMs\CRUDVM.cs" />
-    <Compile Include="Views\ViewModels\CRUD_VMs\FoodVM.cs" />
-    <Compile Include="Views\ViewModels\CRUD_VMs\ExerciseVM.cs" />
+    <Compile Include="ViewModels\CRUD_VMs\CRUDVM.cs" />
+    <Compile Include="ViewModels\CRUD_VMs\ExerciseVM.cs" />
+    <Compile Include="ViewModels\CRUD_VMs\FoodVM.cs" />
+    <Compile Include="ViewModels\CRUD_VMs\UserVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
