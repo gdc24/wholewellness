@@ -34,7 +34,7 @@ namespace wholewellness.Models
         public List<Day> lstHistory { get; set; }
 
 
-        private User(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        public User(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
             this.strUsername = strUsername;

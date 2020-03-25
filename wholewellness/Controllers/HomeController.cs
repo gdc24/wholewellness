@@ -23,59 +23,54 @@ namespace wholewellness.Controllers
             return View();
         }
 
-        // addMeal(Meal meal)
-        public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents)
+        public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)
         {
             Meal newMeal = Meal.of(mealType, lstContents);
 
             FoodVM model = new FoodVM()
             {
-                LstMealsForDay = DayDAL.lstMealsAdded(),
-                User = UserDAL.GetUser(1) // not right, need user ID as input
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).add(newMeal)
             };
 
             return View("Food", model);
         }
 
-
-      
-        // deleteMeal(Meal meal)
-        
-
-        // getHistory()
-        public ActionResult GetHistory()
+        public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)
         {
-            string username = "username";
-            User newUser = User.of(username,140,65,ExerciseLevel.MediumIntensity,1500,30,new List<Day>());
+            FoodVM model = new FoodVM()
+            {
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID) // need to remove meal still
+            };
+            return View("Food", model);
+        }
 
+        public ActionResult GetHistory(int intUserID)
+        {
             HomeVM model = new HomeVM()
             {
-                // User = UserDAL.GetUser(1),
-                // calories left
-                IntCaloriesLeft = DayDAL.GetDaysByUser(1)
-                // meals eaten
+                User = (IEnumerable<User>)UserDAL.GetUser(intUserID),
+                IntCaloriesLeft = (IEnumerable<int>)((Day) DayDAL.GetDaysByUser(intUserID)).intCalsLeft,
+                MealsEaten = ((Day) DayDAL.GetDaysByUser(intUserID)).lstMealsAdded
             };
 
             return View("Home", model);
         }
 
-
-        // GetUserInfo(String username)
-        public ActionResult GetUserInfo()
+        public ActionResult GetUserInfo(int intUserID)
         {
             HomeVM model = new HomeVM()
             {
-
-            }
+                User = (IEnumerable<User>)UserDAL.GetUser(intUserID),
+            };
+            return View("Home", model);
         }
 
 
-        // GetAllFoodItems()
+        // GetAllFoodItems
         public ActionResult GetAllFoodItems()
         {
             FoodVM model = new FoodVM()
             {
-                
 
             };
             return View("Food", model);
@@ -87,7 +82,7 @@ namespace wholewellness.Controllers
 
         // deleteExercise
 
-        // GetAllWorkouts() 
+        // GetAllWorkouts 
 
 
     }
