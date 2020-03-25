@@ -7,7 +7,6 @@ using System.Web.Mvc.Ajax;
 using wholewellness.Models;
 using wholewellness.ViewModels;
 using wholewellness.DAL;
-using wholewellness.Views.ViewModels.CRUD_VMs;
 
 namespace wholewellness.Controllers
 {
@@ -32,7 +31,7 @@ namespace wholewellness.Controllers
             FoodVM model = new FoodVM()
             {
                 LstMealsForDay = DayDAL.lstMealsAdded(),
-                User = UserDAL.GetUser() // not right, need user ID as input
+                User = UserDAL.GetUser(1) // not right, need user ID as input
             };
 
             return View("Food", model);
@@ -46,10 +45,18 @@ namespace wholewellness.Controllers
         // getHistory()
         public ActionResult GetHistory()
         {
+            string username = "username";
+            User newUser = User.of(username,140,65,ExerciseLevel.MediumIntensity,1500,30,new List<Day>());
+
             HomeVM model = new HomeVM()
             {
+                // User = UserDAL.GetUser(1),
+                // calories left
+                IntCaloriesLeft = DayDAL.GetDaysByUser(1)
+                // meals eaten
+            };
 
-            }
+            return View("Home", model);
         }
 
 
@@ -68,9 +75,10 @@ namespace wholewellness.Controllers
         {
             FoodVM model = new FoodVM()
             {
-                LstMealsForDay.DayDAL.lstMealsAdded(),
+                
 
             };
+            return View("Food", model);
         }
 
 
