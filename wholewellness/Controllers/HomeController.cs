@@ -5,6 +5,7 @@ using wholewellness.Models;
 using wholewellness.DAL;
 using wholewellness.Views.ViewModels.CRUD_VMs;
 using wholewellness.Views.ViewModels;
+using System.Linq;
 
 namespace wholewellness.Controllers
 {
@@ -27,7 +28,7 @@ namespace wholewellness.Controllers
 
             FoodVM model = new FoodVM()
             {
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID)
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Append(newMeal)
             };
 
             return View("Food", model);
@@ -37,19 +38,14 @@ namespace wholewellness.Controllers
         {
             FoodVM model = new FoodVM()
             {
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID) // need to remove meal still
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Where(m => m != meal)
             };
             return View("Food", model);
         }
 
         public ActionResult GetHistory(int intUserID)
         {
-            HomeVM model = new HomeVM()
-            {
-                //User = UserDAL.GetUser(intUserID),
-                //IntCaloriesLeft = ((Day)DayDAL.GetDaysByUser(intUserID)).intCalsLeft,
-                //MealsEaten = ((Day) DayDAL.GetDaysByUser(intUserID)).lstMealsAdded
-            };
+            HomeVM model = new HomeVM();
 
             return View("Home", model);
         }
@@ -64,23 +60,15 @@ namespace wholewellness.Controllers
         }
 
 
-        // GetAllFoodItems
-        public ActionResult GetAllFoodItems()
-        {
-            FoodVM model = new FoodVM()
-            {
+        // below will be implemented in a future demo:
 
-            };
-            return View("Food", model);
-        }
+            // GetAllFoodItems
+        
+            // addExercise
 
+            // deleteExercise
 
-
-        // addExercise
-
-        // deleteExercise
-
-        // GetAllWorkouts 
+            // GetAllWorkouts 
 
 
     }
