@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using wholewellness;
 using wholewellness.Controllers;
+using wholewellness.Models;
 
 namespace wholewellness.Tests.Controllers
 {
@@ -31,5 +32,20 @@ namespace wholewellness.Tests.Controllers
             Assert.AreEqual(expectedVersion, result.ViewData["Version"]);
             Assert.AreEqual(expectedRuntime, result.ViewData["Runtime"]);
         }
+
+        [Test]
+        public void AddMeal()
+        {
+            // Arrange
+            var controller = new HomeController();
+            List<FoodItem> lstFoodItems = new List<FoodItem>();
+
+            // Act
+            var result = (ViewResult)controller.AddMeal(Models.MealType.Breakfast, lstFoodItems, 3, 5);
+
+            // Assert
+            
+        }
+
     }
 }
