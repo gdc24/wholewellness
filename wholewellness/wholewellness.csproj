@@ -116,7 +116,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CRUDVM.cs" />
+    <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="DAL\DatabaseConnection.cs" />
     <Compile Include="DAL\DayDAL.cs" />
     <Compile Include="DAL\FoodItemDAL.cs" />
@@ -142,23 +142,6 @@
     <Compile Include="DAL\UserDAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Microsoft.Bcl.AsyncInterfaces.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Npgsql.dll" />
-    <Content Include="bin\System.Buffers.dll" />
-    <Content Include="bin\System.Memory.dll" />
-    <Content Include="bin\System.Numerics.Vectors.dll" />
-    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
-    <Content Include="bin\System.Text.Encodings.Web.dll" />
-    <Content Include="bin\System.Text.Json.dll" />
-    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\System.ValueTuple.dll" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="Global.asax" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />

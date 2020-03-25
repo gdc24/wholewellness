@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using wholewellness.Models;
-using wholewellness.ViewModels;
 using wholewellness.DAL;
+using wholewellness.Views.ViewModels.CRUD_VMs;
+using wholewellness.Views.ViewModels;
 
 namespace wholewellness.Controllers
 {
@@ -29,7 +27,7 @@ namespace wholewellness.Controllers
 
             FoodVM model = new FoodVM()
             {
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).add(newMeal)
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID)
             };
 
             return View("Food", model);
@@ -48,9 +46,9 @@ namespace wholewellness.Controllers
         {
             HomeVM model = new HomeVM()
             {
-                User = (IEnumerable<User>)UserDAL.GetUser(intUserID),
-                IntCaloriesLeft = (IEnumerable<int>)((Day) DayDAL.GetDaysByUser(intUserID)).intCalsLeft,
-                MealsEaten = ((Day) DayDAL.GetDaysByUser(intUserID)).lstMealsAdded
+                //User = UserDAL.GetUser(intUserID),
+                //IntCaloriesLeft = ((Day)DayDAL.GetDaysByUser(intUserID)).intCalsLeft,
+                //MealsEaten = ((Day) DayDAL.GetDaysByUser(intUserID)).lstMealsAdded
             };
 
             return View("Home", model);
@@ -60,7 +58,7 @@ namespace wholewellness.Controllers
         {
             HomeVM model = new HomeVM()
             {
-                User = (IEnumerable<User>)UserDAL.GetUser(intUserID),
+                user = UserDAL.GetUser(intUserID),
             };
             return View("Home", model);
         }
