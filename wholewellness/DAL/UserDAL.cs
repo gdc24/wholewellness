@@ -26,4 +26,31 @@ public class UserDAL
 
         return user;
     }
+
+    public static User GetUser(int intUserID)
+    {
+        User retval = null;
+
+        // create and open connection
+        NpgsqlConnection conn = DatabaseConnection.GetConnection();
+        conn.Open();
+
+        // define a query
+        string query = "SELECT * FROM user WHERE \"intUserID\" = " + intUserID;
+        NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+        // execute query
+        NpgsqlDataReader dr = cmd.ExecuteReader();
+
+        // read all rows and output the first column in each row
+        while (dr.Read())
+        {
+            retval = GetUserFromDR(dr);
+        }
+
+        conn.Close();
+
+        return retval;
+    }
+
 }

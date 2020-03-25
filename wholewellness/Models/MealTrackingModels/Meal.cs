@@ -23,7 +23,7 @@ namespace wholewellness.Models
             this.lstContents = lstContents;
         }
 
-        public Meal of(MealType mealType, List<FoodItem> lstContents)
+        public static Meal of(MealType mealType, List<FoodItem> lstContents)
         {
             return new Meal(mealType, lstContents);
         }
