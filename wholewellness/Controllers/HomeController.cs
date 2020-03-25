@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using wholewellness.Models;
-using wholewellness.Models.ExerciseTrackingModels;
 using wholewellness.ViewModels;
 using wholewellness.DAL;
+using wholewellness.Views.ViewModels.CRUD_VMs;
 
 namespace wholewellness.Controllers
 {
@@ -24,10 +24,6 @@ namespace wholewellness.Controllers
             return View();
         }
 
-        // mostly action results
-        // from that action result you call the DAL method
-        // pass back down data you need
-
         // addMeal(Meal meal)
         public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents)
         {
@@ -36,7 +32,7 @@ namespace wholewellness.Controllers
             FoodVM model = new FoodVM()
             {
                 LstMealsForDay = DayDAL.lstMealsAdded(),
-                User = UserDAL.GetUserFromDR() // not right
+                User = UserDAL.GetUser() // not right, need user ID as input
             };
 
             return View("Food", model);
@@ -45,23 +41,45 @@ namespace wholewellness.Controllers
 
       
         // deleteMeal(Meal meal)
-
-
-        // addExercise(
-        
-
-        // deleteExercise
         
 
         // getHistory()
+        public ActionResult GetHistory()
+        {
+            HomeVM model = new HomeVM()
+            {
+
+            }
+        }
 
 
         // GetUserInfo(String username)
+        public ActionResult GetUserInfo()
+        {
+            HomeVM model = new HomeVM()
+            {
+
+            }
+        }
 
 
-        // GetAllWorkouts() - is this meant to get all that the user has done in a day or all that there are in the database?
+        // GetAllFoodItems()
+        public ActionResult GetAllFoodItems()
+        {
+            FoodVM model = new FoodVM()
+            {
+                LstMealsForDay.DayDAL.lstMealsAdded(),
 
-        // GetAllFoodItems() - is this meant to get all that the user has eaten in a day or all that there are in the database?
+            };
+        }
+
+
+
+        // addExercise
+
+        // deleteExercise
+
+        // GetAllWorkouts() 
 
 
     }
