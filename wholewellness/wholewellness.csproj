@@ -110,6 +110,8 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Views\ViewModels\" />
+    <Folder Include="Views\ViewModels\CRUD_VMs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -121,7 +123,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Models\ExerciseTrackingModels\Equipment.cs" />
     <Compile Include="Models\ExerciseTrackingModels\ExerciseType.cs" />
-    <Compile Include="Models\ExerciseTrackingModels\Favorites.cs" />
     <Compile Include="Models\ExerciseTrackingModels\Intensity.cs" />
     <Compile Include="Models\ExerciseTrackingModels\MuscleGroup.cs" />
     <Compile Include="Models\ExerciseTrackingModels\WorkoutRoutine.cs" />
@@ -129,11 +130,13 @@
     <Compile Include="Models\MealTrackingModels\FoodItem.cs" />
     <Compile Include="Models\MealTrackingModels\HealthierOptions.cs" />
     <Compile Include="Models\MealTrackingModels\MealType.cs" />
-    <Compile Include="Models\MealTrackingModels\Favorites.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\ExerciseLevel.cs" />
     <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="Views\ViewModels\CRUD_VMs\CRUDVM.cs" />
+    <Compile Include="Views\ViewModels\CRUD_VMs\FoodVM.cs" />
+    <Compile Include="Views\ViewModels\CRUD_VMs\ExerciseVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -146,7 +149,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sql\.DS_Store" />
     <None Include="sql\wholewellnessforwomenCreates.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
