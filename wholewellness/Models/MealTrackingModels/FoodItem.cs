@@ -31,7 +31,7 @@ namespace wholewellness.Models
                 this.strBrandName = strBrandName;
         }
 
-        public FoodItem of(int intFoodItemID, string strName, int intCalories, string strBrandName)
+        public static FoodItem of(int intFoodItemID, string strName, int intCalories, string strBrandName)
         {
             return new FoodItem(intFoodItemID, strName, intCalories, strBrandName);
         }

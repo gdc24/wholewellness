@@ -9,7 +9,7 @@ namespace wholewellness.DAL
 {
     public class MealDAL
     {
-        private static Meal GetDayFromDR(NpgsqlDataReader dr)
+        private static Meal GetMealFromDR(NpgsqlDataReader dr)
         {
             int intMealID = Convert.ToInt32(dr["intMealID"]);
             MealType mealType = (MealType)Enum.Parse(typeof(MealType), dr["mealType"].ToString());
@@ -30,7 +30,11 @@ namespace wholewellness.DAL
             conn.Open();
 
             // define a query
-            string query = "SELECT * FROM meal WHERE \"intUserID\" = " + intUserID;
+            string query = "SELECT m.\"intMealID\", m.\"mealType\", m.\"intUserID\" FROM meal as m, dayMeal as dm, day as d" +
+                " WHERE m.\"intMealID\" = dm.\"intMealID\"" +
+                " AND d.\"intDayID\" = dm.\"intDayID\"" +
+                " AND d.\"intDayID\" = " + intDayID +
+                " AND m.\"intUserID\" = " + intUserID;
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
             // execute query
@@ -39,7 +43,7 @@ namespace wholewellness.DAL
             // read all rows and output the first column in each row
             while (dr.Read())
             {
-                Meal meal = GetDayFromDR(dr);
+                Meal meal = GetMealFromDR(dr);
                 retval.Append(meal);
             }
 
