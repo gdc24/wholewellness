@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using wholewellness.Models;
 using wholewellness.Models.ExerciseTrackingModels;
+using wholewellness.ViewModels;
+using wholewellness.DAL;
 
 namespace wholewellness.Controllers
 {
@@ -22,43 +24,44 @@ namespace wholewellness.Controllers
             return View();
         }
 
+        // mostly action results
+        // from that action result you call the DAL method
+        // pass back down data you need
+
         // addMeal(Meal meal)
-        public void addMeal(Meal meal)
+        public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents)
         {
-          // Day.this.mealsAdded.add(meal);
+            Meal newMeal = Meal.of(mealType, lstContents);
+
+            FoodVM model = new FoodVM()
+            {
+                LstMealsForDay = DayDAL.lstMealsAdded(),
+                User = UserDAL.GetUserFromDR() // not right
+            };
+
+            return View("Food", model);
         }
 
+
+      
         // deleteMeal(Meal meal)
-        public void deleteMeal(Meal meal)
-        {
-            // Day.this.mealsAdded.remove(meal);
-        }
 
-        // addExercise(WorkoutRoutine routine)
-        public void addExercise(WorkoutRoutine routine)
-        {
-            // Day.this.exerciseCompleted.add(routine);
-        }
 
-        // deleteExercise(WorkoutRoutine routine)
-        public void removeExercise(WorkoutRoutine routine)
-        {
-            // Day.this.exerciseCompleted.remove(routine)
-        }
+        // addExercise(
+        
+
+        // deleteExercise
+        
 
         // getHistory()
-        public List<Day> getHistory()
-        {
-            // return User.this.history;
-            return new List<Day>();
-        }
-
-        // getUserInfo(String username)
 
 
-        // getAllWorkouts() - is this meant to get all that the user has done in a day or all that there are in the database?
+        // GetUserInfo(String username)
 
-        // getAllFoodItems() - is this meant to get all that the user has eaten in a day or all that there are in the database?
+
+        // GetAllWorkouts() - is this meant to get all that the user has done in a day or all that there are in the database?
+
+        // GetAllFoodItems() - is this meant to get all that the user has eaten in a day or all that there are in the database?
 
 
     }

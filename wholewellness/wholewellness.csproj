@@ -136,10 +136,9 @@
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\ExerciseLevel.cs" />
     <Compile Include="DAL\UserDAL.cs" />
-    <Compile Include="ViewModels\CRUD_VMs\CRUDVM.cs" />
-    <Compile Include="ViewModels\CRUD_VMs\ExerciseVM.cs" />
-    <Compile Include="ViewModels\CRUD_VMs\FoodVM.cs" />
-    <Compile Include="ViewModels\CRUD_VMs\UserVM.cs" />
+    <Compile Include="ViewModels\HomeVM.cs" />
+    <Compile Include="ViewModels\ExerciseVM.cs" />
+    <Compile Include="ViewModels\FoodVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
