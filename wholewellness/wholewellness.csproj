@@ -110,8 +110,6 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\ViewModels\" />
-    <Folder Include="Views\ViewModels\CRUD_VMs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -153,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\wholewellnessforwomenCreates.sql" />
+    <Content Include="Views\Home\Meal.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
