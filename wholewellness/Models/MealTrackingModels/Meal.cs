@@ -12,18 +12,18 @@ namespace wholewellness.Models
         public int intMealID { get; set; }
 
         [Display(Name = "Meal Type")]
-        MealType mealType { get; set; }
+        public MealType mealType { get; set; }
 
         [Display(Name = "Contents")]
-        List<FoodItem> lstContents { get; set; }
+        public List<FoodItem> lstContents { get; set; }
 
-        public Meal(MealType mealType, List<FoodItem> lstContents)
+        private Meal(MealType mealType, List<FoodItem> lstContents)
         {
             this.mealType = mealType;
             this.lstContents = lstContents;
         }
 
-        public Meal of(MealType mealType, List<FoodItem> lstContents)
+        public static Meal of(MealType mealType, List<FoodItem> lstContents)
         {
             return new Meal(mealType, lstContents);
         }

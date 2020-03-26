@@ -1,1 +1,30 @@
-﻿<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+﻿<div class="jumbotron">
+    <h1 class="display-4">Welcome, __________.</h1>
+    <hr class="my-4">
+    <h3 class="lead">You have ___ calories left for the day.</h3>
+    <h3 class="lead">You have ___ exercise minutes left for the day.</h3>
+    <hr>
+</div>
+
+<div class="container" id="home-preview">
+    <div class="row">
+        <div class="col-6">
+            <h2>Workouts:</h2>
+            <ul class="list-group mb-3 mt-1">
+                <li class="list-group-item">workout 1 info</li>
+                <li class="list-group-item">workout 2 info</li>
+                <li class="list-group-item">workout 3 info</li>
+            </ul>
+            @Html.ActionLink("see more →", "Index", "Exercise", null, new { @class = "btn btn-outline-info btn-sm" })
+        </div>
+        <div class="col-6">
+            <h2>Meals:</h2>
+            <ul class="list-group mb-3 mt-1">
+                <li class="list-group-item">meal 1 info</li>
+                <li class="list-group-item">meal 2 info</li>
+                <li class="list-group-item">meal 3 info</li>
+            </ul>
+            @Html.ActionLink("see more →", "Index", "Food", null, new { @class = "btn btn-outline-info btn-sm" })
+        </div>
+    </div>
+</div>
