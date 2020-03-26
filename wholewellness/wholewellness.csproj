@@ -160,7 +160,6 @@
     <None Include="sql\wholewellnessforwomenCreates.sql" />
     <Content Include="Views\Food\FoodHome.cshtml" />
     <Content Include="Views\Food\AddMeal.cshtml" />
-    <None Include="ViewModels\.DS_Store" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
