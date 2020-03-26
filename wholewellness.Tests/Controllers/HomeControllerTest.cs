@@ -1,12 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
-using wholewellness;
+
 using wholewellness.Controllers;
-using wholewellness.Models;
 
 namespace wholewellness.Tests.Controllers
 {
