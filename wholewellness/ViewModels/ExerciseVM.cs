@@ -5,7 +5,7 @@ using System.Web;
 using wholewellness.Models;
 using wholewellness.Models.ExerciseTrackingModels;
 
-namespace wholewellness.Views.ViewModels.CRUD_VMs
+namespace wholewellness.Views.ViewModels
 {
     public class ExerciseVM
     {

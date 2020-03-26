@@ -1,1 +1,5 @@
 ﻿<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+
+<h2>Click below to go to track your meals</h2>
+
+@Html.ActionLink("food", "Index", "Food", null, new { @class = "btn btn-primary btn-lg" } )
