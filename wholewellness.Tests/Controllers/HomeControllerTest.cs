@@ -20,7 +20,7 @@ namespace wholewellness.Tests.Controllers
             var controller = new HomeController();
 
             // Act
-            var result = (ViewResult)controller.Index();
+            ViewResult result = controller.Index() as ViewResult;
 
             var mvcName = typeof(Controller).Assembly.GetName();
             var isMono = Type.GetType("Mono.Runtime") != null;
@@ -31,20 +31,6 @@ namespace wholewellness.Tests.Controllers
             // Assert
             Assert.AreEqual(expectedVersion, result.ViewData["Version"]);
             Assert.AreEqual(expectedRuntime, result.ViewData["Runtime"]);
-        }
-
-        [Test]
-        public void AddMeal()
-        {
-            // Arrange
-            var controller = new HomeController();
-            List<FoodItem> lstFoodItems = new List<FoodItem>();
-
-            // Act
-            var result = (ViewResult)controller.AddMeal(Models.MealType.Breakfast, lstFoodItems, 3, 5);
-
-            // Assert
-            
         }
 
     }

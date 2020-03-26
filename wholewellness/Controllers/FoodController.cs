@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Linq;
 using wholewellness.DAL;
 using wholewellness.Models;
 using wholewellness.Views.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace wholewellness.Controllers
 {
     public class FoodController : Controller
     {
+
         // GET: Food
         public ActionResult Index()
         {
@@ -49,8 +49,8 @@ namespace wholewellness.Controllers
         {
             HomeVM model = new HomeVM();
             //{
-            //    user = UserDAL.GetUser(intUserID),
-            //};
+               // User = UserDAL.GetUser(intUserID)
+          //  };
             return View("Home", model);
         }
 
