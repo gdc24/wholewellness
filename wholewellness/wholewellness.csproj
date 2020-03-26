@@ -157,7 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\wholewellnessforwomenCreates.sql" />
-    <Content Include="Views\Food\Meal.cshtml" />
+    <Content Include="Views\Food\FoodHome.cshtml" />
+    <Content Include="Views\Food\AddMeal.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

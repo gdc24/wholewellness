@@ -14,7 +14,7 @@ namespace wholewellness.Controllers
         // GET: Food
         public ActionResult Index()
         {
-            return View("Meal");
+            return View("FoodHome");
         }
 
         public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)

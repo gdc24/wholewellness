@@ -1,7 +1,7 @@
 INSERT INTO public."user"(
-	"strUsername", "intWeight", "intHeightInInches", "exerciseLevel", "intAllotedCalorites", "intAllotedExerciseMinutes")
+	"strUsername", "intWeight", "intHeightInInches", "exerciseLevel", "intAllotedCalories", "intAllotedExerciseMinutes")
 	VALUES ('gdc24', '130', '66', 'low', '2000', '60'),
-	('abd54', '130', '66', 'low', '2000', '60')
+	('abd54', '130', '66', 'low', '2000', '60');
 
 INSERT INTO public.day(
 	"dtmDate", "intCalsLeft", "intUserID")
