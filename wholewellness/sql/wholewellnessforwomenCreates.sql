@@ -35,7 +35,7 @@ CREATE TABLE "user" (
   "intWeight" int NOT NULL,
   "intHeightInInches" int NOT NULL,
   "exerciseLevel" intensity NOT NULL,
-  "intAllotedCalorites" int NOT NULL,
+  "intAllotedCalories" int NOT NULL,
   "intAllotedExerciseMinutes" int NOT NULL
 );
 
