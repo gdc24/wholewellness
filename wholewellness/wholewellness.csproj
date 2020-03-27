@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -108,9 +109,14 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ControllersTests\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FoodController.cs" />
@@ -142,6 +148,8 @@
     <Compile Include="ViewModels\ExerciseVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
+    <Compile Include="ControllersTests\FoodControllerTest.cs" />
+    <Compile Include="ControllersTests\HomeControllerTest.cs" />
     <Compile Include="ViewModels\AddMealVM.cs" />
   </ItemGroup>
   <ItemGroup>

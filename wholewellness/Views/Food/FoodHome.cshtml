@@ -4,23 +4,45 @@
     ViewBag.Title = "Meal";
 }
 
-    <div class="jumbotron">
-        <h1 class="display-4">Meals</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <div class="text-center">
-            <a class="btn btn-outline-info btn-lg" href="#" role="button">Add a Meal</a>
-            <a class="btn btn-outline-info btn-lg" href="#" role="button">Favorites</a>
-            <a class="btn btn-outline-info btn-lg" href="#" role="button">Healthier Options</a>
-        </div>
+<div class="jumbotron">
+    <h1 class="display-4">Meals</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <div class="text-center">
+        <a class="btn btn-outline-info btn-lg" href="#" role="button">Add a Meal</a>
+        <a class="btn btn-outline-info btn-lg" href="#" role="button">Favorites</a>
+        <a class="btn btn-outline-info btn-lg" href="#" role="button">Healthier Options</a>
     </div>
+</div>
 
     <h2>Food Diary For @Model.user.strUsername</h2>
 
-<br /><br />
+<br />
+<br />
 
-<!-- add for loop for vm here -->
+@foreach (var item in Model.LstMeals)
+{
+    <td>
+        <span>@Html.DisplayFor(modelItem => item.mealType)</span>
+    </td>
+
+    <td>
+        <span>@Html.DisplayFor(modelItem => item.contents)</span>
+    </td>
+}
+
+@foreach (var item in Model.LstMealsForDay)
+{
+    <td>
+        <span>@Html.DisplayFor(modelItem => item.mealType)</span>
+    </td>
+
+    <td>
+        <span>@Html.DisplayFor(modelItem => item.contents)</span>
+    </td>
+}
+
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
