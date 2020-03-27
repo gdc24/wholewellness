@@ -26,6 +26,19 @@ namespace wholewellness.Tests.Controllers
         }
 
         [Test]
+        public void FoodHome()
+        {
+            // Arrange
+            var controller = new FoodController();
+
+            // Act
+            var result = (ViewResult)controller.FoodHome();
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
         public void DeleteMeal()
         {
             // Arrange
