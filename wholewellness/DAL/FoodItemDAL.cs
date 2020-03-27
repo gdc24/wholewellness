@@ -53,6 +53,45 @@ namespace wholewellness.DAL
             return retval;
         }
 
+        public static FoodItem GetFoodItemByID(int intFoodItemID)
+        {
+            FoodItem retval = null;
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT * FROM \"foodItem\" WHERE \"intFoodItemID\" = " + intFoodItemID;
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                retval = GetFoodItemFromDR(dr);
+            }
+
+            conn.Close();
+
+            return retval;
+        }
+
+        public static List<FoodItem> GetFoodItemsByIDs(int[] arrFoodItemIDs)
+        {
+            List<FoodItem> retval = new List<FoodItem>();
+
+            foreach (int id in arrFoodItemIDs)
+            {
+                FoodItem tmpFoodItem = GetFoodItemByID(id);
+                retval.Add(tmpFoodItem);
+            }
+
+            return retval;
+        }
+
         public static List<FoodItem> GetAllFoodItems()
         {
             List<FoodItem> retval = new List<FoodItem>();
@@ -62,7 +101,7 @@ namespace wholewellness.DAL
             conn.Open();
 
             // define a query
-            string query = "SELECT * FROM foodItem";
+            string query = "SELECT * FROM \"foodItem\"";
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
             // execute query
@@ -72,7 +111,7 @@ namespace wholewellness.DAL
             while (dr.Read())
             {
                 FoodItem foodItem = GetFoodItemFromDR(dr);
-                retval.Append(foodItem);
+                retval.Add(foodItem);
             }
 
             conn.Close();

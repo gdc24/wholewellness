@@ -80,5 +80,35 @@ namespace wholewellness.DAL
 
             return retval;
         }
+
+        internal static int GetCalsLeftByDayAndUser(int intUserID, int intDayID)
+        {
+            Day day = null;
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            string dtmDate = DateTime.Today.ToString("yyyy-MM-dd");
+
+            // define a query
+            string query = "SELECT * FROM \"day\" WHERE \"intUserID\" = " + intUserID +
+                " AND \"intDayID\" = " + intDayID + "'";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                day = GetDayFromDR(dr);
+            }
+
+            conn.Close();
+
+            return day.intCalsLeft;
+        }
     }
 }

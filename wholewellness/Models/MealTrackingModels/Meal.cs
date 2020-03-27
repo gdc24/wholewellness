@@ -39,5 +39,10 @@ namespace wholewellness.Models
             return new Meal(intMealID, mealType, lstContents);
         }
 
+        public Meal()
+        {
+
+        }
+
     }
 }

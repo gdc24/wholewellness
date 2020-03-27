@@ -2,3 +2,27 @@
     font-size: .8rem;
     padding: .5rem;
 }
+
+.multiselect-container {
+    width: max-content;
+}
+
+    .multiselect-container a {
+        color: black;
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .multiselect-native-select .btn-group {
+        margin-left: 10rem;
+    }
+
+.meal-type-dropdown {
+    font-family: Verdana, Geneva, sans-serif;
+}
+button.multiselect {
+    border-color: lightgray;
+}
+
+.border-wrapper {
+    border: 1px solid grey;
+}

@@ -5,27 +5,53 @@
     ViewBag.Title = "Add Meal";
 }
 
+<div class="ml-5 mt-5 pl-5 mr-5 pt-4 border-wrapper">
 
-<script src="~/Scripts/jquery.sumoselect.js"></script>
-<link href="~/Content/sumoselect.css" rel="stylesheet" />
+    <h2>Add a Meal:</h2>
 
-<h2>Add a Meal:</h2>
 
-@Html.DropDownListFor(m => m.newMeal.lstContents, new SelectList(Model.possibleFoodItems, "intFoodItemID", "strFullNameAndCals"), new { @multiple = "multiple", @placeholder = "What was in your meal?", @class = "ddlMultiSlectBox" })
+    @using (Html.BeginForm("PostNewMeal", "Food", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <h4>Use the dropdown to add items to the meal:</h4>
+                </div>
+            </div>
+            <div class="row">
+                @Html.DropDownListFor(m => m.arrFoodItemIDs, new SelectList(Model.possibleFoodItems, "intFoodItemID", "strFullNameAndCals"), new { @multiple = "multiple", @placeholder = "What was in your meal?", id = "foodDropDown", @class = "form-control" })
+            </div>
 
-@Html.HiddenFor(m => m.user.strUsername)
+            <div class="row mt-5">
+                <div class="col">
+                    <h4>Meal type:</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                @Html.EnumDropDownListFor(m => m.newMealType, "Select Meal Type", new { @class = "form-control col-2 meal-type-dropdown" })
+            </div>
+        </div>
 
-<input type="button" value="Add Meal" id="addMeal" />
+        @Html.HiddenFor(m => m.user.intUserID)
+        @Html.HiddenFor(m => m.currentDayForUser.intDayID)
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ddlMultiSlectBox').SumoSelect({
-            placeholder: 'This is a placeholder',
-            csvDispCount: 5
-        });
-    });
 
-    $(function () {
+        <input type="submit" value="Add Meal" class="form-control col-4 m-5 btn-primary" />
+    }
+
+    @section scripts {
+        <script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#foodDropDown').multiselect({
+    //        enableFiltering: true,
+    //        filterBehavior: 'text',
+    //        includeResetOption: true,
+    //        includeResetDivider: true
+    //    });
+    //});
+
+    @*$(function () {
         $("#addMeal").click(function () {
             var obj = [],
                 items = '';
@@ -43,23 +69,7 @@
             });
 
         });
-    })
-</script>
-
-<br />
-<br />
-
-<h3>SelectMealType</h3>
-<br />
-<p>
-    Breakfast
-    Lunch
-    Dinner
-    Snack
-</p>
-
-<br />
-<br />
-
-<h3>AddContents</h3>
-<br />
+    })*@
+        </script>
+    }
+</div>

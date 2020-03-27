@@ -53,12 +53,132 @@ namespace wholewellness.DAL
             return retval;
         }
 
-        [HttpPost]
-        public static bool AddMeal(Meal meal)
+        public static bool AddMeal(Meal meal, int intUserID, int intDayID)
         {
-            return false;
+
+            // insert into meal table
+            int intNewMealID = MealDAL.InsertToMealTable(meal, intUserID);
+
+            meal.intMealID = intNewMealID;
+
+            // insert into foodMeal table with newly created meal ID & list of food
+            // insert each item to food meal table
+
+            foreach (var foodItem in meal.lstContents)
+            {
+                MealDAL.InsertToFoodMealTable(meal.intMealID, foodItem.intFoodItemID);
+            }
+
+            // insert into dayMeal table with newly created meal ID
+            bool dayMealSuccess = MealDAL.InsertToDayMealTable(intNewMealID, intDayID);
+
+            // subtract cals fron that day's cals left for that user
+            bool subtractCalsSuccess = MealDAL.SubtractCals(meal.lstContents, intUserID, intDayID);
+
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("");
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+
+            if (result == 1)
+                return true;
+            else
+                return false;
         }
 
+        private static bool InsertToFoodMealTable(int intMealID, int intFoodItemID)
+        {
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
 
+            // define a query
+            string query = "INSERT INTO \"foodMeal\"" +
+                " (\"intMealID\", \"intFoodItemID\")" +
+                " VALUES" +
+                " (@intMealID, @intFoodItemID)";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("intMealID", intMealID);
+            cmd.Parameters.AddWithValue("intFoodItemID", intFoodItemID);
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            if (result == 1)
+                return true;
+            else
+                return false;
+        }
+
+        private static int InsertToMealTable(Meal meal, int intUserID)
+        {
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "INSERT INTO \"meal\"" +
+                " (\"mealType\", \"intUserID\")" +
+                " VALUES" +
+                " (@mealType, @intUserID)" +
+                " RETURNING \"intMealID\"";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("mealType", meal.mealType);
+            cmd.Parameters.AddWithValue("intUserID", intUserID);
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            return result;
+        }
+
+        private static bool SubtractCals(List<FoodItem> lstContents, int intUserID, int intDayID)
+        {
+            int totalCalsToSubtract = 0;
+
+            foreach (var foodItem in lstContents)
+            {
+                totalCalsToSubtract += foodItem.intCalories;
+            }
+
+            int originalCals = DayDAL.GetCalsLeftByDayAndUser(intUserID, intDayID);
+
+            int updateValue = originalCals - totalCalsToSubtract;
+            
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "UPDATE \"day\"" +
+                " SET \"intCalsLeft\" = @updateValue" +
+                " WHERE \"intUserID = @intUserID" +
+                " AND \"intDayID\" = @intDayID";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("updateValue", updateValue);
+            cmd.Parameters.AddWithValue("intUserID", intUserID);
+            cmd.Parameters.AddWithValue("intDayID", intDayID);
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+
+            if (result == 1)
+                return true;
+            else
+                return false;
+        }
     }
 }

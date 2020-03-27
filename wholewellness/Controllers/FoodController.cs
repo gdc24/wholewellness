@@ -11,6 +11,8 @@ namespace wholewellness.Controllers
     public class FoodController : Controller
     {
 
+        private readonly static int USER_NUMBER = 1;
+
         // GET: Food
         public ActionResult Index()
         {
@@ -22,16 +24,34 @@ namespace wholewellness.Controllers
             return View("FoodHome");
         }
 
-        public ActionResult AddMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)
+        public ActionResult AddMeal()
         {
-            Meal newMeal = Meal.of(mealType, lstContents);
+            User user = UserDAL.GetUser(USER_NUMBER);
 
-            FoodVM model = new FoodVM();
-            //{
-            //    LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Add(newMeal)
-            //};
+            AddMealVM model = new AddMealVM
+            {
+                user = user,
+                currentDayForUser = DayDAL.GetDayByUserAndDay(user.intUserID),
+                possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+            };
 
-            return View("Food", model);
+            return View(model);
+        }
+
+        [HttpPost]
+        //public ActionResult PostNewMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)
+        public ActionResult PostNewMeal(MealType newMealType, int[] arrFoodItemIDs, int intUserID, int intDayID)
+        {
+            //Meal newMeal = Meal.of(mealType, lstContents);
+
+            List<FoodItem> lstContents = FoodItemDAL.GetFoodItemsByIDs(arrFoodItemIDs);
+            Meal newMeal = Meal.of(newMealType, lstContents);
+
+            bool success = MealDAL.AddMeal(newMeal, intUserID, intDayID);
+
+            var x = 0;
+
+            return RedirectToAction("AddMeal");
         }
 
         public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)
