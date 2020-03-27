@@ -26,17 +26,18 @@ namespace wholewellness.Models
         [Display(Name = "Calories Remaining")]
         public int intCalsLeft { get; set; }
 
-        public Day(List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
+        public Day(int intDayID, List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
         {
+            this.intDayID = intDayID;
             this.lstMealsAdded = lstMealsAdded;
             this.dtmDate = dtmDate;
             this.lstExerciseCompleted = lstExerciseCompleted;
             this.intCalsLeft = intCalsLeft;
         }
 
-        public static Day of(List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
+        public static Day of(int intDayID, List<Meal> lstMealsAdded, DateTime dtmDate, List<WorkoutRoutine> lstExerciseCompleted, int intCalsLeft)
         {
-            return new Day(lstMealsAdded, dtmDate, lstExerciseCompleted, intCalsLeft);
+            return new Day(intDayID, lstMealsAdded, dtmDate, lstExerciseCompleted, intCalsLeft);
         }
     }
 }

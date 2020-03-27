@@ -9,6 +9,6 @@ namespace wholewellness.ViewModels
 {
     public class ExerciseVM
     {
-        public IEnumerable<WorkoutRoutine> LstWorkoutRoutines { get; set; }
+        public List<WorkoutRoutine> LstWorkoutRoutines { get; set; }
     }
 }

@@ -26,20 +26,20 @@ namespace wholewellness.Controllers
         {
             Meal newMeal = Meal.of(mealType, lstContents);
 
-            FoodVM model = new FoodVM()
-            {
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Append(newMeal)
-            };
+            FoodVM model = new FoodVM();
+            //{
+            //    LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Add(newMeal)
+            //};
 
             return View("Food", model);
         }
 
         public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)
         {
-            FoodVM model = new FoodVM()
-            {
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Where(m => m != meal)
-            };
+            FoodVM model = new FoodVM();
+            //{
+            //    LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Where(m => m != meal)
+            //};
             return View("Food", model);
         }
 

@@ -11,7 +11,9 @@ namespace wholewellness.Controllers
     public class HomeController : Controller
     {
 
-        private static int USER_NUMBER = 1;
+        private readonly static int USER_NUMBER = 1;
+        private readonly static int NUM_PREVIEWS = 3;
+
         public ActionResult Index()
         {
             var mvcName = typeof(Controller).Assembly.GetName();
@@ -24,7 +26,7 @@ namespace wholewellness.Controllers
             {
                 user = user,
                 intCalsLeft = currentDayForUser.intCalsLeft,
-                mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID)
+                mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID).Take(NUM_PREVIEWS).ToList()
             };
             return View(model);
         }

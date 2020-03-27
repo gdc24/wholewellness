@@ -17,7 +17,7 @@ namespace wholewellness.DAL
             int intUserID = Convert.ToInt32(dr["intUserID"]);
             List<FoodItem> lstContents = FoodItemDAL.GetFoodByMealAndUser(intMealID, intUserID);
 
-            Meal meal = Meal.of(mealType, lstContents);
+            Meal meal = Meal.of(intMealID, mealType, lstContents);
 
             return meal;
         }
@@ -45,7 +45,7 @@ namespace wholewellness.DAL
             while (dr.Read())
             {
                 Meal meal = GetMealFromDR(dr);
-                retval.Append(meal);
+                retval.Add(meal);
             }
 
             conn.Close();

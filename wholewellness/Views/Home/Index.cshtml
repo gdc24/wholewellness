@@ -24,10 +24,8 @@
             <ul class="list-group mb-3 mt-1">
                 @foreach (var meal in Model.mostRecentMeals)
                 {
-                    <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals</li>
+                    <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals, + more</li>
                 }
-                <li class="list-group-item">meal 2 info</li>
-                <li class="list-group-item">meal 3 info</li>
             </ul>
             @Html.ActionLink("see more →", "Index", "Food", null, new { @class = "btn btn-outline-info btn-sm" })
         </div>

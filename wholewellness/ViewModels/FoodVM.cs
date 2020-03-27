@@ -7,7 +7,7 @@ namespace wholewellness.ViewModels
 {
     public class FoodVM
     {
-        public IEnumerable<Meal> LstMeals { get; set; }
-        public IEnumerable<Meal> LstMealsForDay { get; internal set; }
+        public List<Meal> LstMeals { get; set; }
+        public List<Meal> LstMealsForDay { get; internal set; }
     }
 }

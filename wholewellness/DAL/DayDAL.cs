@@ -19,14 +19,14 @@ namespace wholewellness.DAL
             List<Meal> lstMealsAdded = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).ToList();
             List<WorkoutRoutine> lstWorkoutRoutines = null; // WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID);
 
-            Day day = Day.of(lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft);
+            Day day = Day.of(intDayID, lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft);
 
             return day;
         }
 
-        public static IEnumerable<Day> GetDaysByUser(int intUserID)
+        public static List<Day> GetDaysByUser(int intUserID)
         {
-            IEnumerable<Day> retval = new List<Day>();
+            List<Day> retval = new List<Day>();
 
             // create and open connection
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
@@ -43,7 +43,7 @@ namespace wholewellness.DAL
             while (dr.Read())
             {
                 Day day = GetDayFromDR(dr);
-                retval.Append(day);
+                retval.Add(day);
             }
 
             conn.Close();
