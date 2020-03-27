@@ -16,23 +16,34 @@ namespace wholewellness.Controllers
         // GET: Food
         public ActionResult Index()
         {
-            return View("FoodHome");
+            return RedirectToAction("FoodHome");
         }
         
         public ActionResult FoodHome()
         {
-            return View("FoodHome");
+            User user = UserDAL.GetUser(USER_NUMBER);
+            Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
+
+            FoodVM model = new FoodVM()
+            {
+                user = user,
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(day.intDayID, user.intUserID)
+            };
+            return View("FoodHome", model);
         }
 
         public ActionResult AddMeal()
         {
             User user = UserDAL.GetUser(USER_NUMBER);
+            Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
 
             AddMealVM model = new AddMealVM
             {
                 user = user,
-                currentDayForUser = DayDAL.GetDayByUserAndDay(user.intUserID),
-                possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+                currentDayForUser = currentDay,
+                possibleFoodItems = FoodItemDAL.GetAllFoodItems(),
+                intPassedCurrentDayID = currentDay.intDayID,
+                intPassedUserID = user.intUserID
             };
 
             return View(model);
@@ -40,18 +51,18 @@ namespace wholewellness.Controllers
 
         [HttpPost]
         //public ActionResult PostNewMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)
-        public ActionResult PostNewMeal(MealType newMealType, int[] arrFoodItemIDs, int intUserID, int intDayID)
+        public ActionResult PostNewMeal(MealType newMealType, int[] arrFoodItemIDs, int intPassedUserID, int intPassedCurrentDayID)
         {
             //Meal newMeal = Meal.of(mealType, lstContents);
 
             List<FoodItem> lstContents = FoodItemDAL.GetFoodItemsByIDs(arrFoodItemIDs);
             Meal newMeal = Meal.of(newMealType, lstContents);
 
-            bool success = MealDAL.AddMeal(newMeal, intUserID, intDayID);
+            bool success = MealDAL.AddMeal(newMeal, intPassedUserID, intPassedCurrentDayID);
 
             var x = 0;
 
-            return RedirectToAction("AddMeal");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)

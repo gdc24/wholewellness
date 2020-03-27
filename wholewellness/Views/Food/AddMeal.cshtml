@@ -33,8 +33,8 @@
             </div>
         </div>
 
-        @Html.HiddenFor(m => m.user.intUserID)
-        @Html.HiddenFor(m => m.currentDayForUser.intDayID)
+        @Html.HiddenFor(m => m.intPassedUserID, new { @Value = Model.user.intUserID})
+        @Html.HiddenFor(m => m.intPassedCurrentDayID, new { @Value = Model.currentDayForUser.intDayID })
 
 
         <input type="submit" value="Add Meal" class="form-control col-4 m-5 btn-primary" />

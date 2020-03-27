@@ -1,4 +1,4 @@
-﻿@model wholewellness.ViewModels.HomeVM
+﻿@model wholewellness.ViewModels.FoodVM
 
 @{
     ViewBag.Title = "Meal";
@@ -10,44 +10,45 @@
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <div class="text-center">
-        <a class="btn btn-outline-info btn-lg" href="#" role="button">Add a Meal</a>
+        @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "btn btn-outline-info btn-lg" })
         <a class="btn btn-outline-info btn-lg" href="#" role="button">Favorites</a>
         <a class="btn btn-outline-info btn-lg" href="#" role="button">Healthier Options</a>
     </div>
 </div>
 
-    <h2>Food Diary For @Model.user.strUsername</h2>
+<h2>food diary for @Model.user.strUsername on @System.DateTime.Today.ToString("MM/dd")</h2>
 
 <br />
 <br />
+<table>
+    <tr>
+        @foreach (var item in Model.LstMealsForDay)
+        {
+            <td>
+                <span></span>
+            </td>
 
-@foreach (var item in Model.LstMeals)
-{
-    <td>
-        <span>@Html.DisplayFor(modelItem => item.mealType)</span>
-    </td>
-
-    <td>
-        <span>@Html.DisplayFor(modelItem => item.contents)</span>
-    </td>
-}
-
-@foreach (var item in Model.LstMealsForDay)
-{
-    <td>
-        <span>@Html.DisplayFor(modelItem => item.mealType)</span>
-    </td>
-
-    <td>
-        <span>@Html.DisplayFor(modelItem => item.contents)</span>
-    </td>
-}
-
-
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
+            <td>
+                <span></span>
+            </td>
+        }
+    </tr>
+</table>
+<div class="card-deck">
+    @foreach (var item in Model.LstMealsForDay)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.mealType)</h5>
+                <br />
+                <h6 class="card-subtitle mb-2 text-muted text-center">this meal consisted of:</h6>
+                <ul>
+                    @foreach (var food in item.lstContents)
+                    {
+                        <li>@food.strFullNameAndCals</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
 </div>

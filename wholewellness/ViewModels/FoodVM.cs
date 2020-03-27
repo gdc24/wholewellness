@@ -9,5 +9,7 @@ namespace wholewellness.ViewModels
     {
         public List<Meal> LstMeals { get; set; }
         public List<Meal> LstMealsForDay { get; internal set; }
+
+        public User user { get; set; }
     }
 }

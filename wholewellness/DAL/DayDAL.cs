@@ -93,7 +93,7 @@ namespace wholewellness.DAL
 
             // define a query
             string query = "SELECT * FROM \"day\" WHERE \"intUserID\" = " + intUserID +
-                " AND \"intDayID\" = " + intDayID + "'";
+                " AND \"intDayID\" = " + intDayID;
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 

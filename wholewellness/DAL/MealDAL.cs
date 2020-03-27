@@ -95,6 +95,31 @@ namespace wholewellness.DAL
                 return false;
         }
 
+        private static bool InsertToDayMealTable(int intNewMealID, int intDayID)
+        {
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "INSERT INTO \"dayMeal\"" +
+                " (\"intDayID\", \"intMealID\")" +
+                " VALUES" +
+                " (@intDayID, @intMealID)";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("intDayID", intDayID);
+            cmd.Parameters.AddWithValue("intMealID", intNewMealID);
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            if (result == 1)
+                return true;
+            else
+                return false;
+        }
+
         private static bool InsertToFoodMealTable(int intMealID, int intFoodItemID)
         {
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
@@ -129,14 +154,14 @@ namespace wholewellness.DAL
             string query = "INSERT INTO \"meal\"" +
                 " (\"mealType\", \"intUserID\")" +
                 " VALUES" +
-                " (@mealType, @intUserID)" +
+                " ('" + meal.mealType.ToString() + "', @intUserID)" +
                 " RETURNING \"intMealID\"";
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("mealType", meal.mealType);
+            //cmd.Parameters.AddWithValue("mealType", meal.mealType.ToString());
             cmd.Parameters.AddWithValue("intUserID", intUserID);
 
-            int result = cmd.ExecuteNonQuery();
+            int result = (int)cmd.ExecuteScalar();
 
             conn.Close();
 
@@ -162,7 +187,7 @@ namespace wholewellness.DAL
             // define a query
             string query = "UPDATE \"day\"" +
                 " SET \"intCalsLeft\" = @updateValue" +
-                " WHERE \"intUserID = @intUserID" +
+                " WHERE \"intUserID\" = @intUserID" +
                 " AND \"intDayID\" = @intDayID";
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 

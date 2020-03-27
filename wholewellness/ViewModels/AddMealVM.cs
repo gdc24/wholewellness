@@ -12,7 +12,9 @@ namespace wholewellness.ViewModels
 
         public User user { get; set; }
 
-        //public Meal newMeal { get; set; }
+        public int intPassedUserID { get; set; }
+
+        public int intPassedCurrentDayID { get; set; }
 
         public MealType newMealType;
 
