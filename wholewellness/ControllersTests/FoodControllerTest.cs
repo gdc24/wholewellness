@@ -19,7 +19,7 @@ namespace wholewellness.Tests.Controllers
             List<FoodItem> lstFoodItems = new List<FoodItem>();
 
             // Act
-            var result = (ViewResult)controller.AddMeal(Models.MealType.Breakfast, lstFoodItems, 3, 5);
+            var result = (ViewResult)controller.AddMeal(Models.MealType.breakfast, lstFoodItems, 3, 5);
 
             // Assert
             Assert.IsNotNull(result);
@@ -31,7 +31,7 @@ namespace wholewellness.Tests.Controllers
             // Arrange
             var controller = new FoodController();
             List<FoodItem> lstFoodItems = new List<FoodItem>();
-            Meal meal = Meal.of(MealType.Breakfast, lstFoodItems);
+            Meal meal = Meal.of(MealType.breakfast, lstFoodItems);
 
             // Act
             var result = (ViewResult)controller.DeleteMeal(meal, 3, 5);
