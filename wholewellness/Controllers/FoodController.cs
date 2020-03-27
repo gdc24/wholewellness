@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using wholewellness.DAL;
 using wholewellness.Models;
-using wholewellness.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using wholewellness.ViewModels;
 
 namespace wholewellness.Controllers
 {
@@ -13,6 +13,11 @@ namespace wholewellness.Controllers
 
         // GET: Food
         public ActionResult Index()
+        {
+            return View("FoodHome");
+        }
+        
+        public ActionResult FoodHome()
         {
             return View("FoodHome");
         }

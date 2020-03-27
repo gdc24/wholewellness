@@ -23,18 +23,46 @@ namespace wholewellness.DAL
 
         public static List<FoodItem> GetFoodByMealAndUser(int intMealID, int intUserID)
         {
-            List<FoodItem> retval = null;
+            List<FoodItem> retval = new List<FoodItem>();
 
             // create and open connection
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
             conn.Open();
 
             // define a query
-            string query = "SELECT fi.\"intFoodItemID\", fi.\"strName\", fi.\"intCalories\", fi.\"strBrandName\", FROM foodItem fi, foodMeal fm, meal m" +
-                " WHERE m.\"intUserID\" = " + intUserID +
+            string query = "SELECT fi.\"intFoodItemID\", fi.\"strName\", fi.\"intCalories\", fi.\"strBrandName\"" +
+                " FROM \"foodItem\" fi, \"foodMeal\" fm, \"meal\" me" +
+                " WHERE me.\"intUserID\" = " + intUserID +
                 " AND fm.\"intMealID\" = " + intMealID +
                 " AND fm.\"intFoodItemID\" = fi.\"intFoodItemID\"" +
-                " AND fm.\"intMealID\" = m.\"intMealID\"";
+                " AND fm.\"intMealID\" = me.\"intMealID\"";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                FoodItem foodItem = GetFoodItemFromDR(dr);
+                retval.Append(foodItem);
+            }
+
+            conn.Close();
+
+            return retval;
+        }
+
+        public static List<FoodItem> GetAllFoodItems()
+        {
+            List<FoodItem> retval = new List<FoodItem>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT * FROM foodItem";
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
             // execute query

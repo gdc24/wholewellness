@@ -111,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FoodController.cs" />
@@ -143,6 +142,7 @@
     <Compile Include="ViewModels\ExerciseVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
+    <Compile Include="ViewModels\AddMealVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\main.css" />

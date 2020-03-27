@@ -12,7 +12,7 @@ namespace wholewellness.DAL
         //public static readonly string USER = "postgres";
         //public static readonly string DATABASE = "wholewellness";
         //public static readonly string PASS = "123456";
-        public static readonly string SERVER = "egibmokv";
+        public static readonly string SERVER = "drona.db.elephantsql.com";
         public static readonly string USER = "egibmokv";
         public static readonly string DATABASE = "egibmokv";
         public static readonly string PASS = "qWPmZC0XMLX8-jD17nCcEEwALX_-g-Cg";

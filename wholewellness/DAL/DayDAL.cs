@@ -17,7 +17,7 @@ namespace wholewellness.DAL
             int intCalsLeft = Convert.ToInt32(dr["intCalsLeft"]);
             int intUserID = Convert.ToInt32(dr["intUserID"]);
             List<Meal> lstMealsAdded = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).ToList();
-            List<WorkoutRoutine> lstWorkoutRoutines = WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID);
+            List<WorkoutRoutine> lstWorkoutRoutines = null; // WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID);
 
             Day day = Day.of(lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft);
 
@@ -26,14 +26,14 @@ namespace wholewellness.DAL
 
         public static IEnumerable<Day> GetDaysByUser(int intUserID)
         {
-            IEnumerable<Day> retval = null;
+            IEnumerable<Day> retval = new List<Day>();
 
             // create and open connection
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
             conn.Open();
 
             // define a query
-            string query = "SELECT * FROM day WHERE \"intUserID\" = " + intUserID;
+            string query = "SELECT * FROM \"day\" WHERE \"intUserID\" = " + intUserID;
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
             // execute query

@@ -17,7 +17,20 @@ public class UserDAL
         int intWeight = Convert.ToInt32(dr["intWeight"]);
         int intHeightInInches = Convert.ToInt32(dr["intHeightInInches"]);
         string strExerciseLevel = dr["exerciseLevel"].ToString();
-        ExerciseLevel exerciseLevel = (ExerciseLevel)Enum.Parse(typeof(ExerciseLevel), strExerciseLevel, true);
+        ExerciseLevel exerciseLevel = ExerciseLevel.LowIntensity;
+        switch (strExerciseLevel)
+        {
+            case "low":
+                exerciseLevel = ExerciseLevel.LowIntensity;
+                break;
+            case "med":
+                exerciseLevel = ExerciseLevel.MediumIntensity;
+                break;
+            case "high":
+                exerciseLevel = ExerciseLevel.HighIntensity;
+                break;
+        }
+        //ExerciseLevel exerciseLevel = (ExerciseLevel)Enum.Parse(typeof(ExerciseLevel), strExerciseLevel, true);
         int intAllotedCalories = Convert.ToInt32(dr["intAllotedCalories"]);
         int intAllotedExerciseMinutes = Convert.ToInt32(dr["intAllotedExerciseMinutes"]);
         List<Day> lstHistory = DayDAL.GetDaysByUser(intUserID).ToList();
@@ -36,7 +49,7 @@ public class UserDAL
         conn.Open();
 
         // define a query
-        string query = "SELECT * FROM user WHERE \"intUserID\" = " + intUserID;
+        string query = "SELECT * FROM \"user\" WHERE \"intUserID\" = " + intUserID;
         NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
         // execute query

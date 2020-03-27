@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using wholewellness.Models;
 
 namespace wholewellness.DAL
@@ -23,18 +24,18 @@ namespace wholewellness.DAL
 
         public static IEnumerable<Meal> GetMealsByDayAndUser(int intDayID, int intUserID)
         {
-            IEnumerable<Meal> retval = null;
+            IEnumerable<Meal> retval = new List<Meal>();
 
             // create and open connection
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
             conn.Open();
 
             // define a query
-            string query = "SELECT m.\"intMealID\", m.\"mealType\", m.\"intUserID\" FROM meal as m, dayMeal as dm, day as d" +
-                " WHERE m.\"intMealID\" = dm.\"intMealID\"" +
+            string query = "SELECT me.\"intMealID\", me.\"mealType\", me.\"intUserID\" FROM meal as me, \"dayMeal\" as dm, \"day\" as d" +
+                " WHERE me.\"intMealID\" = dm.\"intMealID\"" +
                 " AND d.\"intDayID\" = dm.\"intDayID\"" +
                 " AND d.\"intDayID\" = " + intDayID +
-                " AND m.\"intUserID\" = " + intUserID;
+                " AND me.\"intUserID\" = " + intUserID;
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
             // execute query
@@ -50,6 +51,12 @@ namespace wholewellness.DAL
             conn.Close();
 
             return retval;
+        }
+
+        [HttpPost]
+        public static bool AddMeal(Meal meal)
+        {
+            return false;
         }
 
 

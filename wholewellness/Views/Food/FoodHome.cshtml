@@ -1,4 +1,4 @@
-﻿@model wholewellness.ViewModels
+﻿@model wholewellness.ViewModels.HomeVM
 
 @{
     ViewBag.Title = "Meal";
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <h2>Food Diary For @User.strUsername </h2>
+    <h2>Food Diary For @Model.user.strUsername</h2>
 
 <br /><br />
 

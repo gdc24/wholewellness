@@ -1,7 +1,48 @@
-﻿
+﻿@model wholewellness.ViewModels.AddMealVM
+
+
 @{
-    ViewBag.Title = "AddMeal";
+    ViewBag.Title = "Add Meal";
 }
 
-<h2>AddMeal</h2>
+
+<script src="~/Scripts/jquery.sumoselect.js"></script>
+<link href="~/Content/sumoselect.css" rel="stylesheet" />
+
+<h2>Add a Meal:</h2>
+
+@Html.DropDownListFor(m => m.newMeal.lstContents, new SelectList(Model.possibleFoodItems, "intFoodItemID", "strFullNameAndCals"), new { @multiple = "multiple", @placeholder = "What was in your meal?", @class = "ddlMultiSlectBox" })
+
+@Html.HiddenFor(m => m.user.strUsername)
+
+<input type="button" value="Add Meal" id="addMeal" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ddlMultiSlectBox').SumoSelect({
+            placeholder: 'This is a placeholder',
+            csvDispCount: 5
+        });
+    });
+
+    $(function () {
+        $("#addMeal").click(function () {
+            var obj = [],
+                items = '';
+            $('.ddlMultiSlectBox option:selected').each(function (i) {
+                obj.push($(this).val());
+                $('.ddlMultiSlectBox')[0].sumo.unSelectItem(i);
+            });
+
+            // send select ittems to controlelr
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '@Url.Action("AddMeal", "Food")',
+                data: JSON.stringify(obj)
+            });
+
+        });
+    })
+</script>
 

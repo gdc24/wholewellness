@@ -22,6 +22,10 @@ namespace wholewellness.Models
         public string strBrandName { get; set; }
 
 
+        [Display(Name = "Full Name and Calories")]
+        public string strFullNameAndCals { get; set; }
+
+
         private FoodItem(int intFoodItemID, string strName, int intCalories, string strBrandName) 
         {
             this.intFoodItemID = intFoodItemID;
@@ -29,6 +33,9 @@ namespace wholewellness.Models
             this.intCalories = intCalories;
             if (strBrandName != null)
                 this.strBrandName = strBrandName;
+            else
+                this.strBrandName = "";
+            this.strFullNameAndCals = strBrandName + " " + strName + " (" + intCalories + " calories)";
         }
 
         public static FoodItem of(int intFoodItemID, string strName, int intCalories, string strBrandName)
