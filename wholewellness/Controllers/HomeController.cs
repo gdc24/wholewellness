@@ -17,8 +17,15 @@ namespace wholewellness.Controllers
             var mvcName = typeof(Controller).Assembly.GetName();
             var isMono = Type.GetType("Mono.Runtime") != null;
 
-            HomeVM model = new HomeVM();
-            model.user = UserDAL.GetUser(USER_NUMBER);
+            Day currentDayForUser = DayDAL.GetDayByUserAndDay(USER_NUMBER);
+            User user = UserDAL.GetUser(USER_NUMBER);
+
+            HomeVM model = new HomeVM
+            {
+                user = user,
+                intCalsLeft = currentDayForUser.intCalsLeft,
+                mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID)
+            };
             return View(model);
         }
 

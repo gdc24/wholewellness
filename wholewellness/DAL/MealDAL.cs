@@ -22,9 +22,9 @@ namespace wholewellness.DAL
             return meal;
         }
 
-        public static IEnumerable<Meal> GetMealsByDayAndUser(int intDayID, int intUserID)
+        public static List<Meal> GetMealsByDayAndUser(int intDayID, int intUserID)
         {
-            IEnumerable<Meal> retval = new List<Meal>();
+            List<Meal> retval = new List<Meal>();
 
             // create and open connection
             NpgsqlConnection conn = DatabaseConnection.GetConnection();

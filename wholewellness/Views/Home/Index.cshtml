@@ -1,6 +1,6 @@
 ﻿@model wholewellness.ViewModels.HomeVM
 
-„<div class="jumbotron">
+<div class="jumbotron">
     <h1 class="display-4">Welcome, @Model.user.strUsername.</h1>
     <hr class="my-4">
     <h3 class="lead">You have @Model.user.intAllotedCalories calories left for the day.</h3>
@@ -22,7 +22,10 @@
         <div class="col-6">
             <h2>Meals:</h2>
             <ul class="list-group mb-3 mt-1">
-                <li class="list-group-item">meal 1 info</li>
+                @foreach (var meal in Model.mostRecentMeals)
+                {
+                    <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals</li>
+                }
                 <li class="list-group-item">meal 2 info</li>
                 <li class="list-group-item">meal 3 info</li>
             </ul>

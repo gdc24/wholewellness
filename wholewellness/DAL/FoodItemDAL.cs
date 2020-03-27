@@ -45,7 +45,7 @@ namespace wholewellness.DAL
             while (dr.Read())
             {
                 FoodItem foodItem = GetFoodItemFromDR(dr);
-                retval.Append(foodItem);
+                retval.Add(foodItem);
             }
 
             conn.Close();

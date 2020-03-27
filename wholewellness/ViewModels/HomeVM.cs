@@ -10,7 +10,11 @@ namespace wholewellness.ViewModels
     {
         //public ExerciseVM _exercise_vm { get; set; }
         //public FoodVM _food_vm { get; set; }
-        public User user { get; internal set; }
+        public User user { get; set; }
+
+        public int intCalsLeft { get; set; }
+
+        public List<Meal> mostRecentMeals { get; set; }
 
     }
 }

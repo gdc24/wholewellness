@@ -22,9 +22,11 @@
             <br />
             <div class="sidebar-heading-2">Meals</div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Add A Meal</a>
+                @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @*<a href="#" class="list-group-item list-group-item-action bg-light">Add A Meal</a>*@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Healthier Options</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">View</a>
+                @Html.ActionLink("View", "Index", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @*<a href="#" class="list-group-item list-group-item-action bg-light">View</a>*@
             </div>
             <br />
             <div class="sidebar-heading-2">Exercise</div>
