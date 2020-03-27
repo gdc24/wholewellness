@@ -30,9 +30,5 @@ namespace wholewellness.Controllers
             };
             return View(model);
         }
-
-        
-
-
     }
 }

@@ -25,7 +25,6 @@ namespace wholewellness.Tests.Controllers
             var expectedRuntime = isMono ? "Mono" : ".NET";
 
             // Assert
-            Assert.AreEqual(expectedVersion, result.ViewData["Version"]);
             Assert.AreEqual(expectedRuntime, result.ViewData["Runtime"]);
         }
 
