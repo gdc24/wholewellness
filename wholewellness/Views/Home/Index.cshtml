@@ -22,9 +22,23 @@
         <div class="col-6">
             <h2>Meals:</h2>
             <ul class="list-group mb-3 mt-1">
-                @foreach (var meal in Model.mostRecentMeals)
+                @if (Model.mostRecentMeals.Any())
                 {
-                    <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals, + more</li>
+                    foreach (var meal in Model.mostRecentMeals)
+                    {
+                        if (meal.lstContents.Count() <= 1)
+                        {
+                            <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item">@meal.lstContents.First().strFullNameAndCals, + more</li>
+                        }
+                    }
+                }
+                else
+                {
+                    <li class="list-group-item">no meals yet logged for today</li>
                 }
             </ul>
             @Html.ActionLink("see more →", "Index", "Food", null, new { @class = "btn btn-outline-info btn-sm" })

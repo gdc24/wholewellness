@@ -11,7 +11,7 @@ namespace wholewellness.Controllers
     public class HomeController : Controller
     {
 
-        private readonly static int USER_NUMBER = 1;
+        public readonly static int USER_NUMBER = 1;
         private readonly static int NUM_PREVIEWS = 3;
 
         public ActionResult Index()

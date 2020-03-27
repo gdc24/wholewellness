@@ -11,7 +11,7 @@ namespace wholewellness.Controllers
     public class FoodController : Controller
     {
 
-        private readonly static int USER_NUMBER = 1;
+        //private readonly static int USER_NUMBER = 1;
 
         // GET: Food
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace wholewellness.Controllers
         
         public ActionResult FoodHome()
         {
-            User user = UserDAL.GetUser(USER_NUMBER);
+            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
             Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
 
             FoodVM model = new FoodVM()
@@ -34,7 +34,7 @@ namespace wholewellness.Controllers
 
         public ActionResult AddMeal()
         {
-            User user = UserDAL.GetUser(USER_NUMBER);
+            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
             Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
 
             AddMealVM model = new AddMealVM
@@ -59,8 +59,6 @@ namespace wholewellness.Controllers
             Meal newMeal = Meal.of(newMealType, lstContents);
 
             bool success = MealDAL.AddMeal(newMeal, intPassedUserID, intPassedCurrentDayID);
-
-            var x = 0;
 
             return RedirectToAction("Index", "Home");
         }

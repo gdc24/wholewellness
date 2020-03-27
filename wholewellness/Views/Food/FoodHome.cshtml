@@ -6,9 +6,10 @@
 
 <div class="jumbotron">
     <h1 class="display-4">Meals</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p class="lead">Use this section to keep track of your meals. Begin by adding a meal below.</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p><i>"The first wealth is health." — Ralph Waldo Emerson</i></p>
+    <br />
     <div class="text-center">
         @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "btn btn-outline-info btn-lg" })
         <a class="btn btn-outline-info btn-lg" href="#" role="button">Favorites</a>
@@ -16,39 +17,32 @@
     </div>
 </div>
 
-<h2>food diary for @Model.user.strUsername on @System.DateTime.Today.ToString("MM/dd")</h2>
+<h4 class="display-4 ml-2">food diary for @Model.user.strUsername on @System.DateTime.Today.ToString("MM/dd"):</h4>
 
 <br />
 <br />
-<table>
-    <tr>
+
+<div class="container-fluid">
+    <div class="row">
         @foreach (var item in Model.LstMealsForDay)
         {
-            <td>
-                <span></span>
-            </td>
-
-            <td>
-                <span></span>
-            </td>
-        }
-    </tr>
-</table>
-<div class="card-deck">
-    @foreach (var item in Model.LstMealsForDay)
-    {
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.mealType)</h5>
-                <br />
-                <h6 class="card-subtitle mb-2 text-muted text-center">this meal consisted of:</h6>
-                <ul>
-                    @foreach (var food in item.lstContents)
-                    {
-                        <li>@food.strFullNameAndCals</li>
-                    }
-                </ul>
+            <div class="col-auto mb-3" >
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.mealType)</h5>
+                        <br />
+                        <h6 class="card-subtitle mb-2 text-muted text-center">this meal consisted of:</h6>
+                        <ul class="">
+                            @foreach (var food in item.lstContents)
+                            {
+                                <li>@food.strFullNameAndCals</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
+@*<div class="card-deck">*@
+@*</div>*@
