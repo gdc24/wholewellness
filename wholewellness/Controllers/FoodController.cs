@@ -63,6 +63,7 @@ namespace wholewellness.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // TODO: finish
         public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)
         {
             FoodVM model = new FoodVM();
@@ -79,6 +80,7 @@ namespace wholewellness.Controllers
             return View("Home", model);
         }
 
+        // TODO: finish
         public ActionResult GetUserInfo(int intUserID)
         {
             HomeVM model = new HomeVM();
@@ -88,15 +90,15 @@ namespace wholewellness.Controllers
             return View("Home", model);
         }
 
+        public ActionResult GetAllFoodItems()
+        {
+            AddMealVM model = new AddMealVM()
+            {
+                possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+            };
+            return View("FoodHome", model);
+        }
 
-        // below will be implemented in a future demo:
-
-            // GetAllFoodItems
-
-            // addExercise
-
-            // deleteExercise
-
-            // GetAllWorkouts
+           
     }
 }

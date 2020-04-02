@@ -149,6 +149,8 @@
     <Compile Include="ViewModels\FoodVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\AddMealVM.cs" />
+    <Compile Include="Controllers\WorkoutController.cs" />
+    <Compile Include="ViewModels\AddWorkoutVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-multiselect.css" />

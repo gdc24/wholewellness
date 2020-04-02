@@ -10,5 +10,7 @@ namespace wholewellness.ViewModels
     public class ExerciseVM
     {
         public List<WorkoutRoutine> LstWorkoutRoutines { get; set; }
+        
+        public User user { get; set; }
     }
 }
