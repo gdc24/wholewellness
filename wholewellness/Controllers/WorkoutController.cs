@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using wholewellness.ViewModels;
+using wholewellness.Models.ExerciseTrackingModels;
 
 namespace wholewellness.Controllers
 {
@@ -47,9 +48,24 @@ namespace wholewellness.Controllers
             return View(model);
         }
 
-        // TODO: deleteExercise
+        public ActionResult DeleteWorkout(WorkoutRoutine workout, int intDayID, int intUserID)
+        {
+            ExerciseVM model = new ExerciseVM()
+            {
+                LstWorkoutRoutines = WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID).Where(w => w != workout)
+            };
+            return View("WorkoutHome", model);
+        }
 
 
-        // TODO: GetAllWorkouts
+        // TODO: finish
+        public ActionResult GetAllWorkouts()
+        {
+            AddWorkoutVM model = new AddWorkoutVM()
+            {
+                // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises
+            };
+            return View("WorkoutHome", model);
+        }
     }
 }
