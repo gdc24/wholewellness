@@ -151,6 +151,7 @@
     <Compile Include="ViewModels\AddMealVM.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="ViewModels\AddWorkoutVM.cs" />
+    <Compile Include="ControllersTests\WorkoutControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-multiselect.css" />

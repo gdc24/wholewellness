@@ -48,10 +48,8 @@ namespace wholewellness.Controllers
         }
 
         [HttpPost]
-        //public ActionResult PostNewMeal(MealType mealType, List<FoodItem> lstContents, int intDayID, int intUserID)
         public ActionResult PostNewMeal(MealType newMealType, int[] arrFoodItemIDs, int intPassedUserID, int intPassedCurrentDayID)
         {
-            //Meal newMeal = Meal.of(mealType, lstContents);
 
             List<FoodItem> lstContents = FoodItemDAL.GetFoodItemsByIDs(arrFoodItemIDs);
             Meal newMeal = Meal.of(newMealType, lstContents);

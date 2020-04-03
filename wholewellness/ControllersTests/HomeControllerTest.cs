@@ -9,6 +9,7 @@ namespace wholewellness.Tests.Controllers
     [TestFixture]
     public class HomeControllerTest
     {
+        // TODO: test fails
         [Test]
         public void Index()
         {
