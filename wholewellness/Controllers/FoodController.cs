@@ -11,8 +11,6 @@ namespace wholewellness.Controllers
     public class FoodController : Controller
     {
 
-        //private readonly static int USER_NUMBER = 1;
-
         // GET: Food
         public ActionResult Index()
         {
@@ -63,13 +61,12 @@ namespace wholewellness.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // TODO: finish
         public ActionResult DeleteMeal(Meal meal, int intDayID, int intUserID)
         {
-            FoodVM model = new FoodVM();
-            //{
-            //    LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Where(m => m != meal)
-            //};
+            FoodVM model = new FoodVM()
+            {
+                LstMealsForDay = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).Where(m => m != meal)
+            };
             return View("Food", model);
         }
 
@@ -80,13 +77,12 @@ namespace wholewellness.Controllers
             return View("Home", model);
         }
 
-        // TODO: finish
         public ActionResult GetUserInfo(int intUserID)
         {
-            HomeVM model = new HomeVM();
-            //{
-               // User = UserDAL.GetUser(intUserID)
-          //  };
+            HomeVM model = new HomeVM()
+            {
+                user = UserDAL.GetUser(intUserID)
+            };
             return View("Home", model);
         }
 
@@ -98,7 +94,5 @@ namespace wholewellness.Controllers
             };
             return View("FoodHome", model);
         }
-
-           
     }
 }
