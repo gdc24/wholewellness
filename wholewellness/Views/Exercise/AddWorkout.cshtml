@@ -1,0 +1,74 @@
+﻿@model wholewellness.ViewModels.AddWorkoutVM
+
+@{
+    ViewBag.Title = "Add Workout";
+}
+
+<div class="ml-5 mt-5 pl-5 mr-5 pt-4 border-wrapper">
+
+    <h2>Add a Workout:</h2>
+
+
+    @using (Html.BeginForm("PostNewWorkout", "ExerciseType", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <h4>Use the dropdown to add Exercises to the workout:</h4>
+                </div>
+            </div>
+            <div class="row">
+                @Html.DropDownListFor(m => m.arrFoodItemIDs, new SelectList(Model.possibleFoodItems, "intFoodItemID", "strFullNameAndCals"), new { @multiple = "multiple", @placeholder = "What was in your meal?", id = "foodDropDown", @class = "form-control" })
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <h4>Meal type:</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                @Html.EnumDropDownListFor(m => m.newMealType, "Select Meal Type", new { @class = "form-control col-2 meal-type-dropdown" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.intPassedUserID, new { @Value = Model.user.intUserID})
+        @Html.HiddenFor(m => m.intPassedCurrentDayID, new { @Value = Model.currentDayForUser.intDayID })
+
+
+        <input type="submit" value="Add Meal" class="form-control col-4 m-5 btn-primary" />
+    }
+
+    @section scripts {
+        <script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#foodDropDown').multiselect({
+    //        enableFiltering: true,
+    //        filterBehavior: 'text',
+    //        includeResetOption: true,
+    //        includeResetDivider: true
+    //    });
+    //});
+
+    @*$(function () {
+        $("#addMeal").click(function () {
+            var obj = [],
+                items = '';
+            $('.ddlMultiSlectBox option:selected').each(function (i) {
+                obj.push($(this).val());
+                $('.ddlMultiSlectBox')[0].sumo.unSelectItem(i);
+            });
+
+            // send select ittems to controlelr
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '@Url.Action("AddMeal", "Food")',
+                data: JSON.stringify(obj)
+            });
+
+        });
+    })*@
+        </script>
+    }
+</div>

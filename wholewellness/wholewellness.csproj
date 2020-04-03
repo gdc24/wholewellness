@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
+    <Folder Include="Views\Exercise\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FoodController.cs" />
@@ -166,6 +167,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\Exercise\ExerciseHome.cshtml" />
+    <Content Include="Views\Exercise\AddWorkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\wholewellnessforwomenCreates.sql" />
