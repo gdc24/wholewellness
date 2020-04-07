@@ -35,7 +35,7 @@ public class UserDAL
         int intAllotedExerciseMinutes = Convert.ToInt32(dr["intAllotedExerciseMinutes"]);
         List<Day> lstHistory = DayDAL.GetDaysByUser(intUserID).ToList();
 
-        User user = User.of(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
+        User user = User.of(intUserID, strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
 
         return user;
     }

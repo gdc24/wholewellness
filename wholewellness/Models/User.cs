@@ -10,7 +10,7 @@ namespace wholewellness.Models
 
         [Key]
         [Display(Name = "User ID")]
-        public int intUserID = 0;
+        public int intUserID;
 
         [Display(Name = "Username")]
         public string strUsername { get; set; }
@@ -34,9 +34,10 @@ namespace wholewellness.Models
         public List<Day> lstHistory { get; set; }
 
 
-        private User(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        private User(int intUserID, string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
+            this.intUserID = intUserID;
             this.strUsername = strUsername;
             this.intWeight = intWeight;
             this.intHeightInInches = intHeightInInches;
@@ -44,15 +45,14 @@ namespace wholewellness.Models
             this.intAllotedCalories = intAllotedCalories;
             this.intAllotedExerciseMinutes = intAllotedExerciseMinutes;
             this.lstHistory = lstHistory;
-            intUserID++;
         }
 
         public User() { }
 
-        public static User of(string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
+        public static User of(int intUserID, string strUsername, int intWeight, int intHeightInInches, ExerciseLevel exerciseLevel, int intAllotedCalories,
             int intAllotedExerciseMinutes, List<Day> lstHistory)
         {
-            return new User(strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
+            return new User(intUserID, strUsername, intWeight, intHeightInInches, exerciseLevel, intAllotedCalories, intAllotedExerciseMinutes, lstHistory);
         }
     }
 }
