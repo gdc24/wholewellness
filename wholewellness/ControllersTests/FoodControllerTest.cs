@@ -31,10 +31,9 @@ namespace wholewellness.Tests.Controllers
         {
             // Arrange
             var controller = new FoodController();
-            int[] arrFoodItems = new int[10];
 
             // Act
-            var result = (ViewResult)controller.PostNewMeal(MealType.breakfast, arrFoodItems, 3, 5);
+            var result = (ViewResult)controller.AddMeal();
 
             // Assert
             Assert.IsNotNull(result);
@@ -95,5 +94,8 @@ namespace wholewellness.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
+        // TODO: test healthier options
+        // TODO: test get healtheir options
+        // TODO: test post new meal
     }
 }
