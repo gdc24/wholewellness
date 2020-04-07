@@ -1,4 +1,13 @@
-﻿#home-preview .list-group-item {
+﻿.onboarding-form-row {
+    border: 2px solid #cecece;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+#home-preview .list-group-item {
     font-size: .8rem;
     padding: .5rem;
 }

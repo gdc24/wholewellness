@@ -154,6 +154,7 @@
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="ViewModels\AddWorkoutVM.cs" />
     <Compile Include="ControllersTests\WorkoutControllerTest.cs" />
+    <Compile Include="ViewModels\NewUserVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-multiselect.css" />
@@ -178,6 +179,7 @@
     <Content Include="Views\Food\AddMeal.cshtml" />
     <Content Include="Views\Food\HealthierOptions.cshtml" />
     <Content Include="Views\Food\_HealthierOptionsResults.cshtml" />
+    <Content Include="Views\Home\NewUser.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
