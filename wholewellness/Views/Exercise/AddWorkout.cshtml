@@ -18,25 +18,17 @@
                 </div>
             </div>
             <div class="row">
-                @Html.DropDownListFor(m => m.arrFoodItemIDs, new SelectList(Model.possibleFoodItems, "intFoodItemID", "strFullNameAndCals"), new { @multiple = "multiple", @placeholder = "What was in your meal?", id = "foodDropDown", @class = "form-control" })
+                @Html.DropDownListFor(m => m.arrExercises, new SelectList(Model.possibleExercises, "intExerciseTypeID", "strName"), new { @multiple = "multiple", @placeholder = "What exercises did you complete?", id = "workoutDropDown", @class = "form-control" })
             </div>
 
             <div class="row mt-5">
-                <div class="col">
-                    <h4>Meal type:</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2"></div>
-                @Html.EnumDropDownListFor(m => m.newMealType, "Select Meal Type", new { @class = "form-control col-2 meal-type-dropdown" })
-            </div>
         </div>
 
         @Html.HiddenFor(m => m.intPassedUserID, new { @Value = Model.user.intUserID})
         @Html.HiddenFor(m => m.intPassedCurrentDayID, new { @Value = Model.currentDayForUser.intDayID })
 
 
-        <input type="submit" value="Add Meal" class="form-control col-4 m-5 btn-primary" />
+        <input type="submit" value="Add Workout" class="form-control col-4 m-5 btn-primary" />
     }
 
     @section scripts {
