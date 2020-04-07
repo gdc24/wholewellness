@@ -84,7 +84,7 @@ namespace wholewellness.DAL
                 success = InsertDayForUser(intUserID);
                 retval = GetDayByUserAndDay(intUserID);
             }
-            if (success == 1)
+            if (success != -1)
                 return retval;
             else
                 throw new Exception("current day could not be created");
@@ -99,13 +99,14 @@ namespace wholewellness.DAL
             // define a query
             string query = "INSERT INTO public.day(" +
                 " \"dtmDate\", \"intCalsLeft\", \"intUserID\")" +
-                " VALUES(CURRENT_DATE, (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = @intUserID), @intUserID);";
+                " VALUES(CURRENT_DATE, (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = " + intUserID + "), " + intUserID + ");";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("intUserID", intUserID);
+            //cmd.Parameters.AddWithValue("intUserID1", intUserID);
+            //cmd.Parameters.AddWithValue("intUserID2", intUserID);
 
-            int result = (int)cmd.ExecuteScalar();
+            int result = (int)cmd.ExecuteNonQuery();
 
             conn.Close();
 
