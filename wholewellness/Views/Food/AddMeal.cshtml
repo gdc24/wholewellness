@@ -40,36 +40,4 @@
         <input type="submit" value="Add Meal" class="form-control col-4 m-5 btn-primary" />
     }
 
-    @section scripts {
-        <script type="text/javascript">
-    //$(document).ready(function () {
-    //    $('#foodDropDown').multiselect({
-    //        enableFiltering: true,
-    //        filterBehavior: 'text',
-    //        includeResetOption: true,
-    //        includeResetDivider: true
-    //    });
-    //});
-
-    @*$(function () {
-        $("#addMeal").click(function () {
-            var obj = [],
-                items = '';
-            $('.ddlMultiSlectBox option:selected').each(function (i) {
-                obj.push($(this).val());
-                $('.ddlMultiSlectBox')[0].sumo.unSelectItem(i);
-            });
-
-            // send select ittems to controlelr
-            $.ajax({
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                url: '@Url.Action("AddMeal", "Food")',
-                data: JSON.stringify(obj)
-            });
-
-        });
-    })*@
-        </script>
-    }
 </div>

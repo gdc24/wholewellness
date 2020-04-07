@@ -13,36 +13,42 @@
     <div class="text-center">
         @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "btn btn-outline-info btn-lg" })
         <a class="btn btn-outline-info btn-lg" href="#" role="button">Favorites</a>
-        <a class="btn btn-outline-info btn-lg" href="#" role="button">Healthier Options</a>
+        @Html.ActionLink("Healthier Options", "HealthierOptions", "Food", null, new { @class = "btn btn-outline-info btn-lg" })
     </div>
 </div>
 
-<h4 class="display-4 ml-2">food diary for @Model.user.strUsername on @System.DateTime.Today.ToString("MM/dd"):</h4>
 
-<br />
-<br />
+@if (Model.LstMealsForDay.Any())
+{
+    <h4 class="display-4 ml-2">food diary for @Model.user.strUsername on @System.DateTime.Today.ToString("MM/dd"):</h4>
 
-<div class="container-fluid">
-    <div class="row">
-        @foreach (var item in Model.LstMealsForDay)
-        {
-            <div class="col-auto mb-3" >
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.mealType)</h5>
-                        <br />
-                        <h6 class="card-subtitle mb-2 text-muted text-center">this meal consisted of:</h6>
-                        <ul class="">
-                            @foreach (var food in item.lstContents)
-                            {
-                                <li>@food.strFullNameAndCals</li>
-                            }
-                        </ul>
+    <br />
+    <br />
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model.LstMealsForDay)
+            {
+                <div class="col-auto mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.mealType)</h5>
+                            <br />
+                            <h6 class="card-subtitle mb-2 text-muted text-center">this meal consisted of:</h6>
+                            <ul class="">
+                                @foreach (var food in item.lstContents)
+                                {
+                                    <li>@food.strFullNameAndCals</li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
-@*<div class="card-deck">*@
-@*</div>*@
+}
+else
+{
+    <h4 class="display-5 ml-2">Add a meal for today to see them listed here.</h4>
+}
