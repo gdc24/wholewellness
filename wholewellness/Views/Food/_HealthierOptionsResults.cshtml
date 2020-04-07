@@ -1,0 +1,51 @@
+﻿@model wholewellness.ViewModels.HealthierOptionsResultsVM
+
+@if (Model.alternatives.Any())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped" id="healthierOptionsTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.original.strName)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.original.strBrandName)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.original.intCalories)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.alternatives)
+                    {
+                        <tr data-food-item="@(item.intFoodItemID + "_row")">
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.strName)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.strBrandName)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.intCalories)</span>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <span>No results for that food item. Please select another!</span>
+            </div>
+        </div>
+    </div>
+}
+

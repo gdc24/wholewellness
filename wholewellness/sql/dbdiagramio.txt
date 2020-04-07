@@ -1,0 +1,135 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table user as u {
+  intUserID int [pk, increment]
+  strUsername varchar [not null, unique]
+  intWeight int [not null]
+  intHeightInInches int [not null]
+  exerciseLevel intensity [not null]
+  intAllotedCalorites int [not null]
+  intAllotedExerciseMinutes int [not null]
+}
+
+Table day as d {
+  intDayID int [pk, increment]
+  dtmDate date [not null]
+  intCalsLeft int [not null]
+  intUserID int [ref: - u.intUserID, not null]
+}
+
+Table dayMeal as dm {
+  intDayMealID int [pk, increment]
+  intDayID int [ref: - d.intDayID, not null]
+  intMealID int [ref: - m.intMealID, not null]
+}
+
+Table dayExercise as dy {
+  intDayExerciseID int [pk, increment]
+  intDayID int [ref: - d.intDayID]
+  intWorkoutRoutineID int [ref: - wr.intWorkoutRoutineID, not null]
+}
+
+Table foodItem as f {
+  intFoodItemID int [pk, increment] // auto-increment
+  strName varchar [not null]
+  intCalories int [not null]
+  strBrandName varchar
+}
+
+Table meal as m {
+  intMealID int [pk, increment]
+  mealType mealType [not null]
+  intUserID int [ref: - u.intUserID, not null]
+}
+
+Table foodMeal as fm {
+  intFoodMealID int [pk, increment]
+  intMealID int [ref: - m.intMealID, not null]
+  intFoodItemID int [ref: - f.intFoodItemID, not null]
+}
+
+Table favoritesFood as ff {
+  intFavoritesFoodID int [pk, increment]
+  intUserID int [ref: - u.intUserID, not null]
+  intFoodItemID int [ref: - f.intFoodItemID, not null]
+}
+
+Table healthierOptions as ho {
+  intHealthierOptionID int [pk, increment]
+  intOriginalFoodItemID int [ref: - f.intFoodItemID, not null]
+  intAlternativeFoodItemID int [ref: - f.intFoodItemID, not null]
+}
+
+Table exerciseType as t {
+  intExerciseTypeID int [pk, increment]
+  muscleGroup muscleGroup [not null]
+  equipment equipment [not null]
+  intCaloriesBurned int [not null]
+  ysnAccessibility boolean [not null]
+  intTime int [not null]
+  intensity intensity [not null]
+}
+
+Table favortiesExercise {
+  intExerciseFavortiesID int [pk, increment]
+  intUserID int [ref: - u.intUserID, not null]
+  intExerciseTypeID int [ref: - t.intExerciseTypeID, not null]
+}
+
+Table muscleExercise {
+  intMuscleExerciseID int [pk, increment]
+  muscleGroup muscleGroup [not null]
+  intExerciseTypeID int [ref: - t.intExerciseTypeID, not null]
+}
+
+Table workoutRoutine as wr {
+  intWorkoutRoutineID int [pk, increment]
+  intTotalMinutes int [not null]
+  intTotalCalsBurned int [not null]
+  intUserID int [ref: - u.intUserID, not null]
+}
+
+Table workoutExerciseType {
+  intWorkoutExerciseType int [pk, increment]
+  intExerciseTypeID int [ref: - t.intExerciseTypeID, not null]
+  intWorkoutRoutineID int [ref: - wr.intWorkoutRoutineID, not null]
+}
+
+// Enums
+enum mealType {
+  breakfast
+  lunch
+  dinner
+  snack
+}
+
+enum intensity {
+  low
+  med
+  high
+}
+
+enum muscleGroup {
+  arms
+  abs
+  butt
+  legs
+}
+
+enum equipment {
+  none
+  dumbbells
+  treadmill
+  elliptical
+  exerciseBall
+  foamRoller
+  stationaryBike
+  jumpRope
+}
+
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one

@@ -53,6 +53,37 @@ namespace wholewellness.DAL
             return retval;
         }
 
+        internal static List<FoodItem> GetHealthyAlternatives(int intFoodItemID)
+        {
+            List<FoodItem> retval = new List<FoodItem>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT fi.\"intFoodItemID\", fi.\"strName\", fi.\"intCalories\", fi.\"strBrandName\"" +
+                " FROM \"healthierOptions\" ho, \"foodItem\" fi" +
+                " WHERE ho.\"intAlternativeFoodItemID\" = fi.\"intFoodItemID\"" +
+                " AND ho.\"intOriginalFoodItemID\" = " + intFoodItemID;
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                FoodItem foodItem = GetFoodItemFromDR(dr);
+                retval.Add(foodItem);
+            }
+
+            conn.Close();
+
+            return retval;
+
+        }
+
         public static FoodItem GetFoodItemByID(int intFoodItemID)
         {
             FoodItem retval = null;

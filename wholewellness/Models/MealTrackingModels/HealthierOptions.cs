@@ -19,5 +19,7 @@ namespace wholewellness.Models
             this.original = original;
             this.alternatives = alternatives;
         }
+
+        public HealthierOptions() { }
     }
 }

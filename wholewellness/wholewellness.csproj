@@ -115,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Exercise\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FoodController.cs" />
@@ -148,6 +147,8 @@
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="ViewModels\ExerciseVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
+    <Compile Include="ViewModels\HealthierOptionsResultsVM.cs" />
+    <Compile Include="ViewModels\HealthierOptionsVM.cs" />
     <Compile Include="ViewModels\HomeVM.cs" />
     <Compile Include="ViewModels\AddMealVM.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
@@ -158,6 +159,7 @@
     <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-multiselect.js" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\scripts.js" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Global.asax" />
     <Content Include="Views\Web.config" />
@@ -174,6 +176,8 @@
     <None Include="sql\wholewellnessforwomenCreates.sql" />
     <Content Include="Views\Food\FoodHome.cshtml" />
     <Content Include="Views\Food\AddMeal.cshtml" />
+    <Content Include="Views\Food\HealthierOptions.cshtml" />
+    <Content Include="Views\Food\_HealthierOptionsResults.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

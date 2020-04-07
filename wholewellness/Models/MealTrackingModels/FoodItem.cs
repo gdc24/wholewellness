@@ -18,7 +18,7 @@ namespace wholewellness.Models
         [Display(Name = "Calories")]
         public int intCalories { get; set; }
 
-        [Display(Name = "Brand Name")]
+        [Display(Name = "Brand Name, if applicable")]
         public string strBrandName { get; set; }
 
 

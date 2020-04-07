@@ -30,6 +30,31 @@ namespace wholewellness.Controllers
             return View("FoodHome", model);
         }
 
+
+        public ActionResult HealthierOptions()
+        {
+            HealthierOptionsVM model = new HealthierOptionsVM
+            {
+                possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+            };
+
+            model._results_vm.alternatives = new List<FoodItem>();
+
+            return View("HealthierOptions", model);
+        }
+
+        public ActionResult GetHealthierOptions(int intFoodItemID)
+        {
+            HealthierOptionsResultsVM model = new HealthierOptionsResultsVM
+            {
+                alternatives = FoodItemDAL.GetHealthyAlternatives(intFoodItemID),
+                original = FoodItemDAL.GetFoodItemByID(intFoodItemID)
+            };
+
+            return PartialView("_HealthierOptionsResults", model);
+        }
+
+
         public ActionResult AddMeal()
         {
             User user = UserDAL.GetUser(HomeController.USER_NUMBER);
