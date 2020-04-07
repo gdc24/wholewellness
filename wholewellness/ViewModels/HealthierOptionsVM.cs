@@ -11,7 +11,7 @@ namespace wholewellness.ViewModels
 
         public List<FoodItem> possibleFoodItems { get; set; }
 
-        //public User user { get; set; }
+        public User user { get; set; }
 
         //public int intPassedUserID { get; set; }
 

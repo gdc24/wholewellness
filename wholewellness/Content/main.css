@@ -1,10 +1,15 @@
-﻿.onboarding-form-row {
+﻿.logo-button {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.onboarding-form-row {
     border: 2px solid #cecece;
     border-radius: .5rem;
     padding: 1rem;
     margin: 1rem;
     margin-bottom: 2rem;
-
 }
 
 #home-preview .list-group-item {

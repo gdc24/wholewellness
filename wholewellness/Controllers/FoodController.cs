@@ -33,12 +33,15 @@ namespace wholewellness.Controllers
 
         public ActionResult HealthierOptions()
         {
+            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+
             HealthierOptionsVM model = new HealthierOptionsVM
             {
                 possibleFoodItems = FoodItemDAL.GetAllFoodItems()
             };
 
             model._results_vm.alternatives = new List<FoodItem>();
+            model.user = user;
 
             return View("HealthierOptions", model);
         }

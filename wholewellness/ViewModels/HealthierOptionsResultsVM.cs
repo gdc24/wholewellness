@@ -8,6 +8,7 @@ namespace wholewellness.ViewModels
 {
     public class HealthierOptionsResultsVM : HealthierOptions
     {
+
         public HealthierOptionsResultsVM()
         {
             alternatives = new List<FoodItem>();

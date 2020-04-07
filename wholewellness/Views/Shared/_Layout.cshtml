@@ -16,11 +16,12 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <br />
-            <div class="sidebar-heading text-right">whole</div>
-            <div class="sidebar-heading text-right">wellness</div>
-            <div class="sidebar-subtitle text-right">for</div>
-            <div class="sidebar-heading text-right">women</div>
-            <br />
+            <button class="logo-button" onclick="window.location.href='@Url.Action("Index", "Home")'">
+                <div class="sidebar-heading text-right">whole</div>
+                <div class="sidebar-heading text-right">wellness</div>
+                <div class="sidebar-subtitle text-right">for</div>
+                <div class="sidebar-heading text-right">women</div>
+            </button>
             <div class="sidebar-heading-2">Meals</div>
             <div class="list-group list-group-flush">
                 @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
@@ -34,6 +35,18 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Search</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">View</a>
             </div>
+            <br />
+            <br />
+            @if (Model.user != null)
+            {
+                <div class="sidebar-subtitle text-left">You are currently logged in as @Model.user.strUsername.</div>
+            }
+            else
+            {
+                <div class="sidebar-subtitle text-left">You are not currently logged in.</div>
+            }
+
+
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->

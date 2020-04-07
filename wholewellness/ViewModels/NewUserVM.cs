@@ -8,6 +8,6 @@ namespace wholewellness.ViewModels
 {
     public class NewUserVM : User
     {
-
+        public User user { get; set; }
     }
 }
