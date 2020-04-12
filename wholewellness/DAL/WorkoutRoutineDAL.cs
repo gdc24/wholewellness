@@ -25,31 +25,37 @@ namespace wholewellness.DAL
 
         public static List<WorkoutRoutine> GetExercisesByDayAndUser(int intDayID, int intUserID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 
         public static bool AddWorkoutRoutine(WorkoutRoutine workout, int intUserID, int intDayID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 
         public static bool InsertToDayExerciseTable(int intWorkoutRoutineID, int intDayID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 
         public static bool InsertToWokroutExerciseTypeTable(int intWorkoutRoutineID, int intExerciseTypeID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 
         public static int InsertToWorkoutTable(WorkoutRoutine workout, int intUserID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 
         public static bool AddCals(WorkoutRoutine workout, int intUserID, int intDayID)
         {
+            //TODO
             throw new NotImplementedException();
         }
 

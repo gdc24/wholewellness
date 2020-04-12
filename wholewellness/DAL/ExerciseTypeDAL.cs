@@ -24,6 +24,8 @@ namespace wholewellness.DAL
             return foodItem;
         }
 
+        //TODO search methods
+
         private static Intensity GetIntensity(object fromDB)
         {
             string strIntensity = fromDB.ToString();
@@ -39,7 +41,6 @@ namespace wholewellness.DAL
                 case "high":
                     retval = Intensity.High;
                     break;
-
             }
 
             return retval;
@@ -47,7 +48,29 @@ namespace wholewellness.DAL
 
         private static List<MuscleGroup> GetMuscleGroupList(int intExerciseTypeID)
         {
-            throw new NotImplementedException();
+            List<MuscleGroup> retval = new List<MuscleGroup>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT \"muscleGroup\" FROM \"muscleExercise\" WHERE intExerciseTypeID = " + intExerciseTypeID;
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                MuscleGroup muscleGroup = (MuscleGroup)Enum.Parse(typeof(MuscleGroup), dr["muscleGroup"].ToString());
+                retval.Add(muscleGroup);
+            }
+
+            conn.Close();
+
+            return retval;
         }
     }
 }
