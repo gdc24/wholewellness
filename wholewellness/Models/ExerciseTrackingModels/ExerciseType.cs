@@ -41,8 +41,7 @@ namespace wholewellness.Models.ExerciseTrackingModels
             this.intTime = intTime;
         }
 
-        public ExerciseType of(List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility,
-            Intensity intensity, int intTime)
+        public static ExerciseType of(List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, int intTime)
         {
             return new ExerciseType(lstMuscleGroups, strName, intCaloriesBurned, ysnAccessibility, intensity, intTime);
         }

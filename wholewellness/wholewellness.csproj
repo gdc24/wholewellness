@@ -120,6 +120,7 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ControllersTests\FoodControllerTest.cs" />
+    <Compile Include="DAL\ExerciseTypeDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
