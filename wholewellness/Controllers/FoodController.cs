@@ -54,6 +54,9 @@ namespace wholewellness.Controllers
                 original = FoodItemDAL.GetFoodItemByID(intFoodItemID)
             };
 
+            if (!model.alternatives.Any())
+                model.strSearchMessage = "No results for that food item. Please select another.";
+
             return PartialView("_HealthierOptionsResults", model);
         }
 
