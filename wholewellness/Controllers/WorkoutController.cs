@@ -65,8 +65,6 @@ namespace wholewellness.Controllers
                 throw new Exception("error adding food item");
         }
 
-
-        // TODO: finish
         public ActionResult AddExercise()
         {
             if (HomeController.USER_NUMBER == -1)
@@ -82,9 +80,9 @@ namespace wholewellness.Controllers
                 {
                     user = user,
                     currentDayForUser = currentDay,
-                    // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises,
                     intPassedCurrentDayID = currentDay.intDayID,
-                    intPassedUserID = user.intUserID
+                    intPassedUserID = user.intUserID,
+                    possibleWorkouts = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(currentDay.intDayID,user.intUserID)
                 };
 
                 return View(model);
@@ -96,17 +94,6 @@ namespace wholewellness.Controllers
             WorkoutHomeVM model = new WorkoutHomeVM()
             {
                 LstWorkoutRoutines = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(intDayID, intUserID).Where(w => w != workout)
-            };
-            return View("WorkoutHome", model);
-        }
-
-
-        // TODO: finish
-        public ActionResult GetAllWorkouts()
-        {
-            AddWorkoutVM model = new AddWorkoutVM()
-            {
-                // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises
             };
             return View("WorkoutHome", model);
         }

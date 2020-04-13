@@ -19,7 +19,7 @@ namespace wholewellness.ViewModels
 
         public int[] arrExercises;
 
-        public List<ExerciseType> possibleExercises { get; set; }
+        public List<WorkoutRoutine> possibleWorkouts;
 
     }
 }
