@@ -50,11 +50,11 @@ namespace wholewellness.Controllers
 
                 HealthierOptionsVM model = new HealthierOptionsVM
                 {
-                    possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+                    possibleFoodItems = FoodItemDAL.GetAllFoodItems(),
+                    user = user
                 };
 
                 model._results_vm.alternatives = new List<FoodItem>();
-                model.user = user;
 
                 return View("HealthierOptions", model);
             }

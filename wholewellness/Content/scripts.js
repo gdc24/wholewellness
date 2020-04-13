@@ -14,6 +14,42 @@ function searchFoodAlternatives() {
     });
 }
 
+function filterExercises() {
+    var muscleGroup = $("#muscleGroupDropDown option:selected").text();
+    var equipment = $("#equipmentDropDown option:selected").text();
+    var intensity = $("#intensityDropDown option:selected").text().toLowerCase();
+    var accessibility = $("#accessibilityCheckBox").is(":checked");
+    var data = {
+        muscleGroup: muscleGroup,
+        equipment: equipment,
+        intensity: intensity,
+        ysnAccessibility: accessibility
+    };
+    AjaxCall('/Workout/FilterExercises', JSON.stringify(data), 'POST').done(function (response) {
+
+        $('#exercise-results').html(response);
+
+    }).fail(function (error) {
+        console.log(error);
+        alert(error.StatusText);
+    });
+}
+
+function searchExercises() {
+    var muscleGroup = $("#muscleGroupDropDown option:selected").text();
+    var data = {
+        muscleGroup: muscleGroup
+    };
+    AjaxCall('/Workout/SearchForExercises', JSON.stringify(data), 'POST').done(function (response) {
+
+        $('#exercise-results').html(response);
+
+    }).fail(function (error) {
+        console.log(error);
+        alert(error.StatusText);
+    });
+}
+
 function AjaxCall(url, data, type) {
     return $.ajax({
         url: url,

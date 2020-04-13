@@ -29,7 +29,7 @@ namespace wholewellness.Models.ExerciseTrackingModels
         [Display(Name = "Equipment")]
         public Equipment equipment { get; set; }
 
-        [Display(Name = "Time")]
+        [Display(Name = "Minutes")]
         public int intTime { get; set; }
 
         private ExerciseType(MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)

@@ -67,7 +67,7 @@ namespace wholewellness.Controllers
 
 
         // TODO: finish
-        public ActionResult AddExercise()
+        public ActionResult AddWorkout()
         {
             if (HomeController.USER_NUMBER == -1)
             {
@@ -82,14 +82,76 @@ namespace wholewellness.Controllers
                 {
                     user = user,
                     currentDayForUser = currentDay,
-                    // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises,
                     intPassedCurrentDayID = currentDay.intDayID,
                     intPassedUserID = user.intUserID
                 };
 
+                model._results_vm.possibleExercises = new List<ExerciseType>();
+                bool hasAny = model._results_vm.possibleExercises.Any();
+
                 return View(model);
             }
         }
+
+        public ActionResult SearchForExercises(MuscleGroup muscleGroup)
+        {
+            ExerciseType searchCriteria = new ExerciseType
+            {
+                muscleGroup = muscleGroup
+            };
+            //if (muscleGroup != null)
+            //    searchCriteria.muscleGroup = (MuscleGroup)muscleGroup;
+            //if (equipment != null)
+            //    searchCriteria.equipment = (Equipment)equipment;
+            //if (intensity != null)
+            //    searchCriteria.intensity = (Intensity)intensity;
+            //if (ysnAccessibility != null)
+            //    searchCriteria.ysnAccessibility = (bool)ysnAccessibility;
+
+            ExerciseResultsVM model = new ExerciseResultsVM
+            {
+                possibleExercises = ExerciseTypeDAL.GetSearchResults(searchCriteria)
+            };
+
+            if (!model.possibleExercises.Any())
+                model.strSearchMessage = "No results for that search. Please select another.";
+
+            return PartialView("_ExerciseSearchResults", model);
+        }
+
+        public ActionResult FilterExercises(MuscleGroup muscleGroup, Equipment equipment, Intensity intensity, bool ysnAccessibility)
+        {
+            ExerciseType searchCriteria = new ExerciseType()
+            {
+                muscleGroup = muscleGroup,
+                equipment = equipment,
+                intensity = intensity,
+                ysnAccessibility = ysnAccessibility
+            };
+
+            ExerciseResultsVM model = new ExerciseResultsVM
+            {
+                possibleExercises = ExerciseTypeDAL.GetFilterResults(searchCriteria)
+            };
+
+            if (!model.possibleExercises.Any())
+                model.strSearchMessage = "No results for that filter. Please select another.";
+
+            return PartialView("_ExerciseSearchResults", model);
+        }
+
+        //public ActionResult SearchForExercises(ExerciseType searchCriteria)
+        //{
+        //    ExerciseResultsVM model = new ExerciseResultsVM
+        //    {
+        //        possibleExercises = ExerciseTypeDAL.GetSearchResults(searchCriteria)
+        //    };
+
+        //    if (!model.possibleExercises.Any())
+        //        model.strSearchMessage = "No results for that search. Please select another.";
+
+        //    return PartialView("_ExerciseSearchResults", model);
+        //}
 
         public ActionResult DeleteWorkout(WorkoutRoutine workout, int intDayID, int intUserID)
         {

@@ -11,15 +11,27 @@ namespace wholewellness.ViewModels
     {
         public Day currentDayForUser { get; set; }
 
+        public ExerciseResultsVM _results_vm { get; set; }
+
         public User user { get; set; }
 
         public int intPassedUserID { get; set; }
 
         public int intPassedCurrentDayID { get; set; }
 
+        public ExerciseType searchCriteria { get; set; }
+
+        public string strButtonText { get; set; }
+
+
         public int[] arrExercises;
 
-        public List<ExerciseType> possibleExercises { get; set; }
+
+        public AddWorkoutVM()
+        {
+            strButtonText = "Search";
+            _results_vm = new ExerciseResultsVM();
+        }
 
     }
 }

@@ -148,6 +148,7 @@
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="ViewModels\AddExerciseTypeVM.cs" />
     <Compile Include="ViewModels\AddFoodItemVM.cs" />
+    <Compile Include="ViewModels\ExerciseResultsVM.cs" />
     <Compile Include="ViewModels\WorkoutHomeVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
     <Compile Include="ViewModels\HealthierOptionsResultsVM.cs" />
@@ -185,6 +186,7 @@
     <Content Include="Views\Home\NewUser.cshtml" />
     <Content Include="Views\Food\AddFoodItem.cshtml" />
     <Content Include="Views\Workout\AddExerciseType.cshtml" />
+    <Content Include="Views\Workout\_ExerciseSearchResults.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

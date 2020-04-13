@@ -70,6 +70,34 @@ namespace wholewellness.DAL
             throw new NotImplementedException();
         }
 
+        internal static List<ExerciseType> GetSearchResults(ExerciseType searchCriteria)
+        {
+            List<ExerciseType> retval = new List<ExerciseType>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT * FROM \"exerciseType\"" +
+                " WHERE \"muscleGroup\" = '" + searchCriteria.muscleGroup.ToString() + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                ExerciseType exercise = GetExerciseFromDR(dr);
+                retval.Add(exercise);
+            }
+
+            conn.Close();
+
+            return retval;
+        }
+
         //TODO search methods
 
         private static Intensity GetIntensityFromDB(object fromDB)
@@ -91,7 +119,40 @@ namespace wholewellness.DAL
 
             return retval;
         }
-        
+
+        internal static List<ExerciseType> GetFilterResults(ExerciseType searchCriteria)
+        {
+            List<ExerciseType> retval = new List<ExerciseType>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string subquery = "SELECT * FROM \"exerciseType\"" +
+                " WHERE \"muscleGroup\" = '" + searchCriteria.muscleGroup.ToString() + "'";
+            string query = "SELECT * FROM (" + subquery + ")  initialSearch" +
+                " WHERE \"muscleGroup\" = '" + searchCriteria.muscleGroup.ToString() + "'" +
+                " AND \"equipment\" = '" + searchCriteria.equipment.ToString() + "'" +
+                " AND \"intensity\" = '" + GetDBIntensityFromEnum(searchCriteria.intensity) + "'" +
+                " AND \"ysnAccessibility\" = " + searchCriteria.ysnAccessibility + "";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                ExerciseType exercise = GetExerciseFromDR(dr);
+                retval.Add(exercise);
+            }
+
+            conn.Close();
+
+            return retval;
+        }
+
         private static string GetDBIntensityFromEnum(Intensity intensity)
         {
             string retval = "";

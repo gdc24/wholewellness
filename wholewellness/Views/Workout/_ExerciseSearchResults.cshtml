@@ -1,0 +1,91 @@
+﻿@model wholewellness.ViewModels.ExerciseResultsVM
+
+
+
+@if (Model.possibleExercises.Any())
+{
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-4">
+                @Html.EnumDropDownListFor(m => m.equipment, "Select Equipment", new { @class = "form-control meal-type-dropdown", @id = "equipmentDropDown" })
+            </div>
+            <div class="col-4">
+                @Html.EnumDropDownListFor(m => m.intensity, "Select Intensity", new { @class = "form-control meal-type-dropdown", @id = "intensityDropDown" })
+            </div>
+            <div class="col-2">
+                @Html.CheckBoxFor(m => m.ysnAccessibility, new { @class = "form-control meal-type-dropdown", @id = "accessibilityCheckBox" })
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-light" onclick="filterExercises()">Filter</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-striped" id="exerciseResultsTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.strName)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.muscleGroup)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.intCaloriesBurned)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.ysnAccessibility)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.intensity)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.equipment)</span>
+                            </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.intTime)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.possibleExercises)
+                    {
+                        <tr data-food-item="@(item.intExerciseTypeID + "_row")">
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.strName)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.muscleGroup)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.intCaloriesBurned)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.ysnAccessibility)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.intensity)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.equipment)</span>
+                            </td>
+                            <td>
+                                <span>@Html.DisplayFor(modelItem => item.intTime)</span>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <span class="font-italic">@Model.strSearchMessage</span>
+            </div>
+        </div>
+    </div>
+}
+

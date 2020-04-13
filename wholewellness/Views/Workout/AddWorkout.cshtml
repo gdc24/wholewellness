@@ -4,31 +4,52 @@
     ViewBag.Title = "Add Workout";
 }
 
-<div class="ml-5 mt-5 pl-5 mr-5 pt-4 border-wrapper">
+    <div class="ml-5 mt-5 pl-5 mr-5 pt-4 pb-4 border-wrapper">
 
-    <h2>Add a Workout:</h2>
+        <h2>Add a Workout:</h2>
 
 
-    @using (Html.BeginForm("PostNewWorkout", "ExerciseType", FormMethod.Post))
-    {
+        <h4>Use the dropdown to search exercises:</h4>
+
         <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <h4>Use the dropdown to add Exercises to the workout:</h4>
-                </div>
-            </div>
             <div class="row">
-                @Html.DropDownListFor(m => m.arrExercises, new SelectList(Model.possibleExercises, "intExerciseTypeID", "strName"), new { @multiple = "multiple", @placeholder = "What exercises did you complete?", id = "workoutDropDown", @class = "form-control" })
+                <div class="col-10">
+                    @Html.EnumDropDownListFor(m => m.searchCriteria.muscleGroup, "Select Muscle Group", new { @class = "form-control meal-type-dropdown", @id = "muscleGroupDropDown" })
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-light" onclick="searchExercises()">@Model.strButtonText</button>
+                </div>
             </div>
 
         </div>
 
-        @Html.HiddenFor(m => m.intPassedUserID, new { @Value = Model.user.intUserID })
-        @Html.HiddenFor(m => m.intPassedCurrentDayID, new { @Value = Model.currentDayForUser.intDayID })
+        <br />
+        <br />
+
+        <div id="exercise-results">
+            @{ @Html.Partial("_ExerciseSearchResults", Model._results_vm) }
+        </div>
+
+        @*@using (Html.BeginForm("PostNewWorkout", "ExerciseType", FormMethod.Post))
+        {
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col">
+                        <h4>Use the dropdown to add exercises to the workout:</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.DropDownListFor(m => m.arrExercises, new SelectList(Model.possibleExercises, "intExerciseTypeID", "strDropdownText"), new { @multiple = "multiple", @placeholder = "What exercises did you complete?", id = "workoutDropDown", @class = "form-control" })
+                </div>
+
+            </div>
+
+            @Html.HiddenFor(m => m.intPassedUserID, new { @Value = Model.user.intUserID })
+            @Html.HiddenFor(m => m.intPassedCurrentDayID, new { @Value = Model.currentDayForUser.intDayID })
 
 
-        <input type="submit" value="Add Workout" class="form-control col-4 m-5 btn-primary" />
+            <input type="submit" value="Add Workout" class="form-control col-4 m-5 btn-primary" />
 
-    }
+        }*@
 
-</div>
+    </div>

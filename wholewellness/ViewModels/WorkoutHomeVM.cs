@@ -12,5 +12,9 @@ namespace wholewellness.ViewModels
         public IEnumerable<WorkoutRoutine> LstWorkoutRoutines { get; set; }
         
         public User user { get; set; }
+        public WorkoutHomeVM()
+        {
+            LstWorkoutRoutines = new List<WorkoutRoutine>();
+        }
     }
 }
