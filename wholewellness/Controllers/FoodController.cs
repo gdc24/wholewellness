@@ -78,11 +78,9 @@ namespace wholewellness.Controllers
             bool success = FoodItemDAL.AddFoodItem(newFoodItem);
 
             if (success)
-                RedirectToAction("AddMeal");
+                return RedirectToAction("AddMeal");
             else
                 throw new Exception("error adding food item");
-
-            return null;
         }
 
 
