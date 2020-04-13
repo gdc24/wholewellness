@@ -146,6 +146,7 @@
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\ExerciseLevel.cs" />
     <Compile Include="DAL\UserDAL.cs" />
+    <Compile Include="ViewModels\AddExerciseTypeVM.cs" />
     <Compile Include="ViewModels\AddFoodItemVM.cs" />
     <Compile Include="ViewModels\ExerciseVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
@@ -183,6 +184,7 @@
     <Content Include="Views\Food\_HealthierOptionsResults.cshtml" />
     <Content Include="Views\Home\NewUser.cshtml" />
     <Content Include="Views\Food\AddFoodItem.cshtml" />
+    <Content Include="Views\Exercise\AddExercise.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
