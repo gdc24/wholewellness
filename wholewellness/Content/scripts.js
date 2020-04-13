@@ -1,4 +1,19 @@
 ﻿
+
+function postNewWorkout() {
+    var checked = $('.checkboxes:checkbox:checked')
+    console.log(checked);
+    AjaxCall('/Food/GetHealthierOptions', JSON.stringify(data), 'POST').done(function (response) {
+
+        $('#food-results').html(response);
+
+    }).fail(function (error) {
+        console.log(error);
+        alert(error.StatusText);
+    });
+}
+
+
 function searchFoodAlternatives() {
     var intFoodItemID = $("#foodDropDown").val();
     var data = {

@@ -45,6 +45,9 @@
                             <th>
                                 <span>@Html.DisplayNameFor(m => m.intTime)</span>
                             </th>
+                            <th>
+                                <span>@Html.DisplayNameFor(m => m.isSelected)</span>
+                            </th>
                         </tr>
                     </thead>
                     @foreach (var item in Model.possibleExercises)
@@ -71,12 +74,18 @@
                             <td>
                                 <span>@Html.DisplayFor(modelItem => item.intTime)</span>
                             </td>
+                            <td>
+                                <span>@Html.EditorFor(modelItem => item.isSelected, new { htmlAttributes = new { @class = "form-control checkboxes" } })</span>
+                            </td>
                         </tr>
                     }
                 </table>
             </div>
         </div>
     </div>
+
+    <button type="button" class="btn btn-light" onclick="postNewWorkout()">Add Workout</button>
+
 }
 else
 {

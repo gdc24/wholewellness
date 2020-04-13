@@ -32,6 +32,9 @@ namespace wholewellness.Models.ExerciseTrackingModels
         [Display(Name = "Minutes")]
         public int intTime { get; set; }
 
+        [Display(Name = "Add to Workout")]
+        public bool isSelected { get; set; }
+
         private ExerciseType(MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)
         {
             this.muscleGroup = muscleGroup;
