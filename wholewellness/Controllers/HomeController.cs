@@ -12,7 +12,9 @@ namespace wholewellness.Controllers
     {
 
         //public static int USER_NUMBER = -1; // FOR PROD
+        //public static int DAY_NUMBER = -1; // FOR PROD
         public static int USER_NUMBER = 1; // FOR DEV
+        public static int DAY_NUMBER = 9324; // FOR DEV
         private readonly static int NUM_PREVIEWS = 3;
 
         public ActionResult Index()
@@ -29,10 +31,14 @@ namespace wholewellness.Controllers
                 Day currentDayForUser = DayDAL.GetDayByUserAndDay(USER_NUMBER);
                 User user = UserDAL.GetUser(USER_NUMBER);
 
+                USER_NUMBER = user.intUserID;
+                DAY_NUMBER = currentDayForUser.intDayID;
+
                 HomeVM model = new HomeVM
                 {
                     user = user,
                     intCalsLeft = currentDayForUser.intCalsLeft,
+                    intExMinsLeft = currentDayForUser.intExMinsLeft,
                     mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID).Take(NUM_PREVIEWS).ToList()
                 };
                 return View(model);
@@ -70,7 +76,7 @@ namespace wholewellness.Controllers
             if (success)
             {
                 User user = UserDAL.GetUserByUsername(newUser.strUsername);
-                USER_NUMBER = user.intUserID;
+                //USER_NUMBER = user.intUserID;
 
                 return RedirectToAction("Index");
             }
@@ -104,7 +110,7 @@ namespace wholewellness.Controllers
         public ActionResult Login(string strUsername)
         {
             User user = UserDAL.GetUserByUsername(strUsername);
-            USER_NUMBER = user.intUserID;
+            //USER_NUMBER = user.intUserID;
 
             return RedirectToAction("Index");
         }

@@ -1,11 +1,23 @@
 ﻿
 
 function postNewWorkout() {
-    var checked = $('.checkboxes:checkbox:checked')
-    console.log(checked);
-    AjaxCall('/Food/GetHealthierOptions', JSON.stringify(data), 'POST').done(function (response) {
+    //var checked = $('.checkboxes:checkbox:checked')
+    //console.log(checked);
+    checkedExercises = [];
 
-        $('#food-results').html(response);
+    $("input:checkbox").each(function () {
+        var $this = $(this);
+
+        if ($this.is(":checked")) {
+            checkedExercises.push($this.attr("data-intexerciseid"));
+        }
+    });
+
+    console.log(checkedExercises);
+
+    RerouteAjaxCall('/Workout/PostNewWorkout', JSON.stringify(checkedExercises), 'POST').done(function (response) {
+
+        //$('#exercise-results').html(response);
 
     }).fail(function (error) {
         console.log(error);
@@ -72,5 +84,18 @@ function AjaxCall(url, data, type) {
         data: data,
         contentType: 'application/json',
         async: false
+    });
+}
+
+function RerouteAjaxCall(url, data, type) {
+    return $.ajax({
+        url: url,
+        type: type ? type : 'GET',
+        data: data,
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            window.location.href = data;
+        }
     });
 }

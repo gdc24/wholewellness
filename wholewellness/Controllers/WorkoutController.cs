@@ -62,7 +62,7 @@ namespace wholewellness.Controllers
             if (success)
                 return RedirectToAction("AddExercise");
             else
-                throw new Exception("error adding food item");
+                throw new Exception("error adding exercise type");
         }
 
 
@@ -140,18 +140,16 @@ namespace wholewellness.Controllers
             return PartialView("_ExerciseSearchResults", model);
         }
 
-        //public ActionResult SearchForExercises(ExerciseType searchCriteria)
-        //{
-        //    ExerciseResultsVM model = new ExerciseResultsVM
-        //    {
-        //        possibleExercises = ExerciseTypeDAL.GetSearchResults(searchCriteria)
-        //    };
+        [HttpPost]
+        public ActionResult PostNewWorkout(int[] arrIntExerciseTypeIDs)
+        {
+            bool success = WorkoutRoutineDAL.AddWorkoutRoutine(arrIntExerciseTypeIDs);
 
-        //    if (!model.possibleExercises.Any())
-        //        model.strSearchMessage = "No results for that search. Please select another.";
-
-        //    return PartialView("_ExerciseSearchResults", model);
-        //}
+            if (success)
+                return Json(Url.Action("Index", "Workout"));
+            else
+                throw new Exception("error adding workout");
+        }
 
         public ActionResult DeleteWorkout(WorkoutRoutine workout, int intDayID, int intUserID)
         {

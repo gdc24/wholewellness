@@ -2,6 +2,7 @@
 
 
 
+
 @if (Model.possibleExercises.Any())
 {
     <div class="container">
@@ -75,7 +76,7 @@
                                 <span>@Html.DisplayFor(modelItem => item.intTime)</span>
                             </td>
                             <td>
-                                <span>@Html.EditorFor(modelItem => item.isSelected, new { htmlAttributes = new { @class = "form-control checkboxes" } })</span>
+                                <span>@Html.EditorFor(modelItem => item.isSelected, new { htmlAttributes = new { @class = "form-control checkboxes", @data_intExerciseID = item.intExerciseTypeID } })</span>
                             </td>
                         </tr>
                     }

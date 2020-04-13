@@ -14,6 +14,8 @@ namespace wholewellness.ViewModels
 
         public int intCalsLeft { get; set; }
 
+        public int intExMinsLeft { get; set; }
+
         public List<Meal> mostRecentMeals { get; set; }
 
     }

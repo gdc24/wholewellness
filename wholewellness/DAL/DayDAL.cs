@@ -18,8 +18,9 @@ namespace wholewellness.DAL
             int intUserID = Convert.ToInt32(dr["intUserID"]);
             List<Meal> lstMealsAdded = MealDAL.GetMealsByDayAndUser(intDayID, intUserID).ToList();
             List<WorkoutRoutine> lstWorkoutRoutines = null; // WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID);
+            int intExMinsLeft = Convert.ToInt32(dr["intExMinsLeft"]);
 
-            Day day = Day.of(intDayID, lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft);
+            Day day = Day.of(intDayID, lstMealsAdded, dtmDate, lstWorkoutRoutines, intCalsLeft, intExMinsLeft);
 
             return day;
         }
@@ -93,18 +94,17 @@ namespace wholewellness.DAL
         private static int InsertDayForUser(int intUserID)
         {
 
+            int intExMinsLeft = UserDAL.GetUser(intUserID).intAllotedExerciseMinutes;
+
             NpgsqlConnection conn = DatabaseConnection.GetConnection();
             conn.Open();
 
             // define a query
             string query = "INSERT INTO public.day(" +
-                " \"dtmDate\", \"intCalsLeft\", \"intUserID\")" +
-                " VALUES((select(current_date at time zone '-4')::date), (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = " + intUserID + "), " + intUserID + ");";
+                " \"dtmDate\", \"intCalsLeft\", \"intUserID\", \"intExMinsLeft\")" +
+                " VALUES((select(current_date at time zone '-4')::date), (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = " + intUserID + "), " + intUserID + ", " + intExMinsLeft +");";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-
-            //cmd.Parameters.AddWithValue("intUserID1", intUserID);
-            //cmd.Parameters.AddWithValue("intUserID2", intUserID);
 
             int result = (int)cmd.ExecuteNonQuery();
 
@@ -141,6 +141,36 @@ namespace wholewellness.DAL
             conn.Close();
 
             return day.intCalsLeft;
+        }
+
+        internal static int GetExerciseLeftByDayAndUser(int intUserID, int intDayID)
+        {
+            Day day = null;
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            string dtmDate = DateTime.Today.ToString("yyyy-MM-dd");
+
+            // define a query
+            string query = "SELECT * FROM \"day\" WHERE \"intUserID\" = " + intUserID +
+                " AND \"intDayID\" = " + intDayID;
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                day = GetDayFromDR(dr);
+            }
+
+            conn.Close();
+
+            return day.intExMinsLeft;
         }
     }
 }

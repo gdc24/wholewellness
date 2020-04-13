@@ -20,9 +20,34 @@ namespace wholewellness.DAL
             Intensity intensity = GetIntensityFromDB(dr["intensity"]);
             int intTime = Convert.ToInt32(dr["intTime"]);
 
-            ExerciseType foodItem = ExerciseType.of(muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
+            ExerciseType foodItem = ExerciseType.of(intExerciseTypeID, muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
 
             return foodItem;
+        }
+
+        public static ExerciseType GetExerciseTypeByID(int intExerciseTypeID)
+        {
+            ExerciseType retval = null;
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT * FROM \"exerciseType\" WHERE \"intExerciseTypeID\" = " + intExerciseTypeID;
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                retval = GetExerciseFromDR(dr);
+            }
+
+            conn.Close();
+
+            return retval;
         }
 
         private static List<Equipment> GetEquipmentList(int intExerciseTypeID)
