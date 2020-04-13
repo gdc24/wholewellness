@@ -19,31 +19,45 @@ namespace wholewellness.Controllers
         
         public ActionResult FoodHome()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-            Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
-
-            FoodVM model = new FoodVM()
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user,
-                LstMealsForDay = MealDAL.GetMealsByDayAndUser(day.intDayID, user.intUserID)
-            };
-            return View("FoodHome", model);
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+                Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
+
+                FoodVM model = new FoodVM()
+                {
+                    user = user,
+                    LstMealsForDay = MealDAL.GetMealsByDayAndUser(day.intDayID, user.intUserID)
+                };
+                return View("FoodHome", model);
+            }
         }
 
 
         public ActionResult HealthierOptions()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-
-            HealthierOptionsVM model = new HealthierOptionsVM
+            if (HomeController.USER_NUMBER == -1)
             {
-                possibleFoodItems = FoodItemDAL.GetAllFoodItems()
-            };
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
 
-            model._results_vm.alternatives = new List<FoodItem>();
-            model.user = user;
+                HealthierOptionsVM model = new HealthierOptionsVM
+                {
+                    possibleFoodItems = FoodItemDAL.GetAllFoodItems()
+                };
 
-            return View("HealthierOptions", model);
+                model._results_vm.alternatives = new List<FoodItem>();
+                model.user = user;
+
+                return View("HealthierOptions", model);
+            }
         }
 
         public ActionResult GetHealthierOptions(int intFoodItemID)
@@ -62,13 +76,20 @@ namespace wholewellness.Controllers
 
         public ActionResult AddFoodItem()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-
-            AddFoodItemVM model = new AddFoodItemVM
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user
-            };
-            return View(model);
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+
+                AddFoodItemVM model = new AddFoodItemVM
+                {
+                    user = user
+                };
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -86,19 +107,26 @@ namespace wholewellness.Controllers
 
         public ActionResult AddMeal()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-            Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
-
-            AddMealVM model = new AddMealVM
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user,
-                currentDayForUser = currentDay,
-                possibleFoodItems = FoodItemDAL.GetAllFoodItems(),
-                intPassedCurrentDayID = currentDay.intDayID,
-                intPassedUserID = user.intUserID
-            };
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+                Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
 
-            return View(model);
+                AddMealVM model = new AddMealVM
+                {
+                    user = user,
+                    currentDayForUser = currentDay,
+                    possibleFoodItems = FoodItemDAL.GetAllFoodItems(),
+                    intPassedCurrentDayID = currentDay.intDayID,
+                    intPassedUserID = user.intUserID
+                };
+
+                return View(model);
+            }
         }
 
         [HttpPost]

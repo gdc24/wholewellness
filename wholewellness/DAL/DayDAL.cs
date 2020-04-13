@@ -99,7 +99,7 @@ namespace wholewellness.DAL
             // define a query
             string query = "INSERT INTO public.day(" +
                 " \"dtmDate\", \"intCalsLeft\", \"intUserID\")" +
-                " VALUES((select(current_date at time zone 'EDT')::date), (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = " + intUserID + "), " + intUserID + ");";
+                " VALUES((select(current_date at time zone '-4')::date), (SELECT \"intAllotedCalories\" FROM \"user\" WHERE \"intUserID\" = " + intUserID + "), " + intUserID + ");";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 

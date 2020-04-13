@@ -18,26 +18,40 @@ namespace wholewellness.Controllers
 
         public ActionResult WorkoutHome()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-            Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
-
-            WorkoutHomeVM model = new WorkoutHomeVM()
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user,
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+                Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
 
-            };
-            return View(model);
+                WorkoutHomeVM model = new WorkoutHomeVM()
+                {
+                    user = user,
+
+                };
+                return View(model);
+            }            
         }
 
         public ActionResult AddExerciseType()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-
-            AddExerciseTypeVM model = new AddExerciseTypeVM()
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user
-            };
-            return View(model);
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+
+                AddExerciseTypeVM model = new AddExerciseTypeVM()
+                {
+                    user = user
+                };
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -55,19 +69,26 @@ namespace wholewellness.Controllers
         // TODO: finish
         public ActionResult AddExercise()
         {
-            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
-            Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
-
-            AddWorkoutVM model = new AddWorkoutVM
+            if (HomeController.USER_NUMBER == -1)
             {
-                user = user,
-                currentDayForUser = currentDay,
-               // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises,
-                intPassedCurrentDayID = currentDay.intDayID,
-                intPassedUserID = user.intUserID
-            };
+                return RedirectToAction("NewUser", "Home");
+            }
+            else
+            {
+                User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+                Day currentDay = DayDAL.GetDayByUserAndDay(user.intUserID);
 
-            return View(model);
+                AddWorkoutVM model = new AddWorkoutVM
+                {
+                    user = user,
+                    currentDayForUser = currentDay,
+                    // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises,
+                    intPassedCurrentDayID = currentDay.intDayID,
+                    intPassedUserID = user.intUserID
+                };
+
+                return View(model);
+            }
         }
 
         public ActionResult DeleteWorkout(WorkoutRoutine workout, int intDayID, int intUserID)
