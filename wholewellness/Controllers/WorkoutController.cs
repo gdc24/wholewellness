@@ -21,12 +21,12 @@ namespace wholewellness.Controllers
             User user = UserDAL.GetUser(HomeController.USER_NUMBER);
             Day day = DayDAL.GetDayByUserAndDay(user.intUserID);
 
-            ExerciseVM model = new ExerciseVM()
+            WorkoutHomeVM model = new WorkoutHomeVM()
             {
                 user = user,
 
             };
-            return View("WorkoutHome", model);
+            return View(model);
         }
 
         public ActionResult AddExerciseType()
@@ -72,7 +72,7 @@ namespace wholewellness.Controllers
 
         public ActionResult DeleteWorkout(WorkoutRoutine workout, int intDayID, int intUserID)
         {
-            ExerciseVM model = new ExerciseVM()
+            WorkoutHomeVM model = new WorkoutHomeVM()
             {
                 LstWorkoutRoutines = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(intDayID, intUserID).Where(w => w != workout)
             };

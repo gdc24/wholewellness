@@ -8,7 +8,7 @@ namespace wholewellness.ViewModels
 {
     public class HomeVM
     {
-        public ExerciseVM _exercise_vm { get; set; }
+        public WorkoutHomeVM _exercise_vm { get; set; }
         public FoodVM _food_vm { get; set; }
         public User user { get; set; }
 

@@ -148,7 +148,7 @@
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="ViewModels\AddExerciseTypeVM.cs" />
     <Compile Include="ViewModels\AddFoodItemVM.cs" />
-    <Compile Include="ViewModels\ExerciseVM.cs" />
+    <Compile Include="ViewModels\WorkoutHomeVM.cs" />
     <Compile Include="ViewModels\FoodVM.cs" />
     <Compile Include="ViewModels\HealthierOptionsResultsVM.cs" />
     <Compile Include="ViewModels\HealthierOptionsVM.cs" />
@@ -173,7 +173,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Workout\ExerciseHome.cshtml" />
+    <Content Include="Views\Workout\WorkoutHome.cshtml" />
     <Content Include="Views\Workout\AddWorkout.cshtml" />
   </ItemGroup>
   <ItemGroup>

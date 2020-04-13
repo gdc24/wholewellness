@@ -7,7 +7,7 @@ using wholewellness.Models.ExerciseTrackingModels;
 
 namespace wholewellness.ViewModels
 {
-    public class ExerciseVM
+    public class WorkoutHomeVM
     {
         public IEnumerable<WorkoutRoutine> LstWorkoutRoutines { get; set; }
         
