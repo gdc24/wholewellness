@@ -32,5 +32,18 @@ namespace wholewellness.Models.ExerciseTrackingModels
         {
             return new WorkoutRoutine(intTotalMinutes, lstRoutine, intTotalCalsBurned);
         }
+
+        public WorkoutRoutine(int intWorkoutRoutineID, int intTotalMinutes, List<ExerciseType> lstRoutine, int intTotalCalsBurned)
+        {
+            this.intWorkoutRoutineID = intWorkoutRoutineID;
+            this.intTotalMinutes = intTotalMinutes;
+            this.lstRoutine = lstRoutine;
+            this.intTotalCalsBurned = intTotalCalsBurned;
+        }
+
+        public static WorkoutRoutine of(int intWorkoutRoutineID, int intTotalMinutes, List<ExerciseType> lstRoutine, int intTotalCalsBurned)
+        {
+            return new WorkoutRoutine(intWorkoutRoutineID, intTotalMinutes, lstRoutine, intTotalCalsBurned);
+        }
     }
 }

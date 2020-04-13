@@ -52,7 +52,7 @@ namespace wholewellness.Controllers
         {
             ExerciseVM model = new ExerciseVM()
             {
-                LstWorkoutRoutines = WorkoutRoutineDAL.GetExercisesByDayAndUser(intDayID, intUserID).Where(w => w != workout)
+                LstWorkoutRoutines = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(intDayID, intUserID).Where(w => w != workout)
             };
             return View("WorkoutHome", model);
         }

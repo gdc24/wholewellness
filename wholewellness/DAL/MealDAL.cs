@@ -75,24 +75,26 @@ namespace wholewellness.DAL
             // subtract cals fron that day's cals left for that user
             bool subtractCalsSuccess = MealDAL.SubtractCals(meal.lstContents, intUserID, intDayID);
 
-            NpgsqlConnection conn = DatabaseConnection.GetConnection();
-            conn.Open();
+            //NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            //conn.Open();
 
-            // define a query
-            string query = "";
-            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+            //// define a query
+            //string query = "";
+            //NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("");
+            //cmd.Parameters.AddWithValue("");
 
-            int result = cmd.ExecuteNonQuery();
+            //int result = cmd.ExecuteNonQuery();
 
-            conn.Close();
+            //conn.Close();
 
 
-            if (result == 1)
-                return true;
-            else
-                return false;
+            //if (result == 1)
+            //    return true;
+            //else
+            //    return false;
+
+            return dayMealSuccess && subtractCalsSuccess;
         }
 
         private static bool InsertToDayMealTable(int intNewMealID, int intDayID)

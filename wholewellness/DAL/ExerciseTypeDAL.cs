@@ -24,6 +24,12 @@ namespace wholewellness.DAL
             return foodItem;
         }
 
+        internal static List<ExerciseType> GetExercisesByWorkout(int intWorkoutRoutineID)
+        {
+            //TODO
+            throw new NotImplementedException();
+        }
+
         //TODO search methods
 
         private static Intensity GetIntensity(object fromDB)
