@@ -3,9 +3,9 @@ namespace wholewellness.Models.ExerciseTrackingModels
 {
     public enum MuscleGroup
     {
-        Abs,
-        Arms,
-        Butt,
-        Legs
+        abs,
+        arms,
+        butt,
+        legs
     }
 }

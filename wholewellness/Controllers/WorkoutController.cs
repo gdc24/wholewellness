@@ -40,6 +40,17 @@ namespace wholewellness.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult PostNewExerciseType(ExerciseType newExercise)
+        {
+            bool success = ExerciseTypeDAL.AddExerciseType(newExercise);
+
+            if (success)
+                return RedirectToAction("AddExercise");
+            else
+                throw new Exception("error adding food item");
+        }
+
 
         // TODO: finish
         public ActionResult AddExercise()

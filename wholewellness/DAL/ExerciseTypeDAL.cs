@@ -17,7 +17,7 @@ namespace wholewellness.DAL
             bool ysnAccessibility = Convert.ToBoolean(dr["ysnAccessibility"]);
             MuscleGroup muscleGroup = (MuscleGroup)Enum.Parse(typeof(MuscleGroup), dr["muscleGroup"].ToString());
             Equipment equipment = (Equipment)Enum.Parse(typeof(Equipment), dr["equipment"].ToString());
-            Intensity intensity = GetIntensity(dr["intensity"]);
+            Intensity intensity = GetIntensityFromDB(dr["intensity"]);
             int intTime = Convert.ToInt32(dr["intTime"]);
 
             ExerciseType foodItem = ExerciseType.of(muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
@@ -31,6 +31,39 @@ namespace wholewellness.DAL
             throw new NotImplementedException();
         }
 
+        internal static bool AddExerciseType(ExerciseType newExercise)
+        {
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "INSERT INTO public.\"exerciseType\"(" +
+                " \"muscleGroup\", equipment, \"intCaloriesBurned\", \"ysnAccessibility\", \"intTime\", intensity, \"strName\")" +
+                " VALUES('" + newExercise.muscleGroup.ToString() + "'," +
+                " '" + newExercise.equipment.ToString() + "'," +
+                " @intCaloriesBurned, @ysnAccessibility, @intTime," +
+                " '" + GetDBIntensityFromEnum(newExercise.intensity) + "'," +
+                " @strName); ";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            //cmd.Parameters.AddWithValue("muscleGroup", );
+            //cmd.Parameters.AddWithValue("equipment", newFoodItem.intCalories);
+            cmd.Parameters.AddWithValue("intCaloriesBurned", newExercise.intCaloriesBurned);
+            cmd.Parameters.AddWithValue("ysnAccessibility", newExercise.ysnAccessibility);
+            cmd.Parameters.AddWithValue("intTime", newExercise.intTime);
+            //cmd.Parameters.AddWithValue("intensity", newFoodItem.intCalories);
+            cmd.Parameters.AddWithValue("strName", newExercise.strName.ToLower());
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            if (result == 1)
+                return true;
+            else
+                return false;
+        }
+
         internal static List<ExerciseType> GetExercisesByWorkout(int intWorkoutRoutineID)
         {
             //TODO
@@ -39,7 +72,7 @@ namespace wholewellness.DAL
 
         //TODO search methods
 
-        private static Intensity GetIntensity(object fromDB)
+        private static Intensity GetIntensityFromDB(object fromDB)
         {
             string strIntensity = fromDB.ToString();
             Intensity retval = 0;
@@ -58,6 +91,27 @@ namespace wholewellness.DAL
 
             return retval;
         }
+        
+        private static string GetDBIntensityFromEnum(Intensity intensity)
+        {
+            string retval = "";
+            switch (intensity)
+            {
+                case Intensity.Low:
+                    retval = "low";
+                    break;
+                case Intensity.Medium:
+                    retval = "med";
+                    break;
+                case Intensity.High:
+                    retval = "high";
+                    break;
+            }
+
+            return retval;
+        }
+
+
 
         private static List<MuscleGroup> GetMuscleGroupList(int intExerciseTypeID)
         {

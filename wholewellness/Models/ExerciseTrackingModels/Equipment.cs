@@ -3,13 +3,13 @@ namespace wholewellness.Models.ExerciseTrackingModels
 {
     public enum Equipment
     {
-        None,
-        Dumbells,
-        Treadmill,
-        Elliptical,
-        ExerciseBall,
-        FoamRoller,
-        StationaryBike,
-        JumpRope
+        none,
+        dumbbells,
+        treadmill,
+        elliptical,
+        exerciseBall,
+        foamRoller,
+        stationaryBike,
+        jumpRope
     }
 }
