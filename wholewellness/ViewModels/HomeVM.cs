@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using wholewellness.Models;
+using wholewellness.Models.ExerciseTrackingModels;
 
 namespace wholewellness.ViewModels
 {
@@ -17,6 +18,8 @@ namespace wholewellness.ViewModels
         public int intExMinsLeft { get; set; }
 
         public List<Meal> mostRecentMeals { get; set; }
+
+        public List<WorkoutRoutine> mostRecentWorkouts { get; set; }
 
     }
 }

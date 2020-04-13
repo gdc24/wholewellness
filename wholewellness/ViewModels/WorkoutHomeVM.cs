@@ -10,7 +10,9 @@ namespace wholewellness.ViewModels
     public class WorkoutHomeVM
     {
         public IEnumerable<WorkoutRoutine> LstWorkoutRoutines { get; set; }
-        
+
+        public IEnumerable<Meal> LstMealsForDay { get; internal set; }
+
         public User user { get; set; }
         public WorkoutHomeVM()
         {

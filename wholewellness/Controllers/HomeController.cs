@@ -39,7 +39,8 @@ namespace wholewellness.Controllers
                     user = user,
                     intCalsLeft = currentDayForUser.intCalsLeft,
                     intExMinsLeft = currentDayForUser.intExMinsLeft,
-                    mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID).Take(NUM_PREVIEWS).ToList()
+                    mostRecentMeals = MealDAL.GetMealsByDayAndUser(currentDayForUser.intDayID, user.intUserID).Take(NUM_PREVIEWS).ToList(),
+                    mostRecentWorkouts = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(currentDayForUser.intDayID, user.intUserID).Take(NUM_PREVIEWS).ToList()
                 };
                 return View(model);
             }

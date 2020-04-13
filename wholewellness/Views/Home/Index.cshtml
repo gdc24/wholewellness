@@ -13,9 +13,24 @@
         <div class="col-6">
             <h2>Workouts:</h2>
             <ul class="list-group mb-3 mt-1">
-                <li class="list-group-item">workout 1 info</li>
-                <li class="list-group-item">workout 2 info</li>
-                <li class="list-group-item">workout 3 info</li>
+                @if (Model.mostRecentWorkouts.Any())
+                {
+                    foreach (var workout in Model.mostRecentWorkouts)
+                    {
+                        if (workout.lstRoutine.Count() <= 1)
+                        {
+                            <li class="list-group-item">@workout.lstRoutine.First().strName</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item">@workout.lstRoutine.First().strName, + more</li>
+                        }
+                    }
+                }
+                else
+                {
+                    <li class="list-group-item">no workouts yet logged for today</li>
+                }
             </ul>
             @Html.ActionLink("see more →", "Index", "Workout", null, new { @class = "btn btn-outline-info btn-sm" })
         </div>

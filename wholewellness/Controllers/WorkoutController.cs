@@ -30,7 +30,7 @@ namespace wholewellness.Controllers
                 WorkoutHomeVM model = new WorkoutHomeVM()
                 {
                     user = user,
-
+                    LstWorkoutRoutines = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(day.intDayID, user.intUserID)
                 };
                 return View(model);
             }            

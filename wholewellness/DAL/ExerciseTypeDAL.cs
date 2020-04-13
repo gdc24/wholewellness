@@ -91,8 +91,33 @@ namespace wholewellness.DAL
 
         internal static List<ExerciseType> GetExercisesByWorkout(int intWorkoutRoutineID)
         {
-            //TODO
-            throw new NotImplementedException();
+            List<ExerciseType> retval = new List<ExerciseType>();
+
+            // create and open connection
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "SELECT et.*" +
+                " FROM \"exerciseType\" et, \"workoutExerciseType\" we, \"workoutRoutine\" wr" +
+                " WHERE we.\"intWorkoutRoutineID\" = " + intWorkoutRoutineID +
+                " AND we.\"intExerciseTypeID\" = et.\"intExerciseTypeID\"" +
+                " AND we.\"intWorkoutRoutineID\" = wr.\"intWorkoutRoutineID\"";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            // execute query
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            // read all rows and output the first column in each row
+            while (dr.Read())
+            {
+                ExerciseType foodItem = GetExerciseFromDR(dr);
+                retval.Add(foodItem);
+            }
+
+            conn.Close();
+
+            return retval;
         }
 
         internal static List<ExerciseType> GetSearchResults(ExerciseType searchCriteria)

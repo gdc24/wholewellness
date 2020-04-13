@@ -173,6 +173,9 @@ namespace wholewellness.DAL
             // add calories to users' calories for the day
             bool calsSuccess = AddCals(workoutRoutine.intTotalCalsBurned, intUserID, intDayID);
 
+            // insert to day/exercise table
+            bool daySuccess = InsertToDayExerciseTable(intWorkoutRoutineID, intDayID);
+
             return success && exMinsSuccess && calsSuccess;
         }
 
