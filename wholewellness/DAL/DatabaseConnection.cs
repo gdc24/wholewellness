@@ -17,6 +17,9 @@ namespace wholewellness.DAL
         public static readonly string USER = "egibmokv";
         public static readonly string DATABASE = "egibmokv";
         public static readonly string PASS = "qWPmZC0XMLX8-jD17nCcEEwALX_-g-Cg";
+        public static readonly string MAX_POOL_SIZE = "5";
+        public static readonly string CONNECTION_IDLE_LIFETIME = "2"; // in seconds
+        public static readonly string CONNECTION_PRUNING_INTERVAL = "1"; // in seconds
 
         public static NpgsqlConnection GetConnection()
         {
@@ -25,7 +28,10 @@ namespace wholewellness.DAL
                 "Server=" + SERVER + ";" +
                 "User Id=" + USER + ";" +
                 "Password=" + PASS + ";" +
-                "Database=" + DATABASE + ";");
+                "Database=" + DATABASE + ";"
+                //+ "Connection Idle Lifetime=" + CONNECTION_IDLE_LIFETIME + ";"
+                //+ "Connection Pruning Interval=" + CONNECTION_PRUNING_INTERVAL + ";"
+                );
 
             return conn;
         }
