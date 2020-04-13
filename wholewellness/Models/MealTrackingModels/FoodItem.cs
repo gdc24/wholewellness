@@ -42,5 +42,23 @@ namespace wholewellness.Models
         {
             return new FoodItem(intFoodItemID, strName, intCalories, strBrandName);
         }
+
+        private FoodItem(string strName, int intCalories, string strBrandName) 
+        {
+            this.strName = strName;
+            this.intCalories = intCalories;
+            if (strBrandName != null)
+                this.strBrandName = strBrandName;
+            else
+                this.strBrandName = "";
+            this.strFullNameAndCals = strBrandName + " " + strName + " (" + intCalories + " calories)";
+        }
+
+        public static FoodItem of(string strName, int intCalories, string strBrandName)
+        {
+            return new FoodItem(strName, intCalories, strBrandName);
+        }
+
+        public FoodItem() { }
     }
 }

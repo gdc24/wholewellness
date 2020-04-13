@@ -4,6 +4,13 @@
     width: 100%;
 }
 
+.login-button {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    margin-right: -26rem;
+}
+
 .onboarding-form-row {
     border: 2px solid #cecece;
     border-radius: .5rem;

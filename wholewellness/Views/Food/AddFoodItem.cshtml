@@ -1,0 +1,47 @@
+﻿@model wholewellness.ViewModels.AddFoodItemVM 
+
+@{
+    ViewBag.Title = "Add A Food Item";
+}
+
+
+<div class="ml-5 mt-5 pl-5 mr-5 pt-4 border-wrapper">
+
+    <h2>Add a food item:</h2>
+
+
+    @using (Html.BeginForm("AddFoodItem", "Food", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-2">
+                    <h6>Food Item Name:</h6>
+                </div>
+                <div class="col">
+                    @Html.EditorFor(m => m.strName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-2">
+                    <h6>Brand Name:</h6>
+                </div>
+                <div class="col">
+                    @Html.EditorFor(m => m.strBrandName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-2">
+                    <h6>Calories per serving:</h6>
+                </div>
+                <div class="col">
+                    @Html.EditorFor(m => m.intCalories, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Add Food Item to Database" class="form-control col-4 m-5 justify-items-center btn-primary" />
+    }
+
+</div>

@@ -27,6 +27,7 @@
                 @Html.ActionLink("Add A Meal", "AddMeal", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("Healthier Food Options", "HealthierOptions", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("View Meals", "FoodHome", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
+                @Html.ActionLink("Add Food Item", "AddFoodItem", "Food", null, new { @class = "list-group-item list-group-item-action bg-light" })
             </div>
             <br />
             <div class="sidebar-heading-2">Exercise</div>
@@ -43,7 +44,9 @@
             }
             else
             {
-                <div class="sidebar-subtitle text-left">You are not currently logged in.</div>
+                <button class="login-button" onclick="window.location.href='@Url.Action("NewUser", "Home")'">
+                    <div class="sidebar-subtitle text-left">You are not currently logged in. Please click here to log in or create an account.</div>
+                </button>
             }
 
 

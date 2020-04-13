@@ -84,6 +84,35 @@ namespace wholewellness.DAL
 
         }
 
+        internal static bool AddFoodItem(FoodItem newFoodItem)
+        {
+            NpgsqlConnection conn = DatabaseConnection.GetConnection();
+            conn.Open();
+
+            // define a query
+            string query = "INSERT INTO public.\"foodItem\"(" +
+                " \"strName\", \"intCalories\", \"strBrandName\")" +
+                " VALUES(@strName, @intCalories, @strBrandName);";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("strName", newFoodItem.strName.ToLower());
+            cmd.Parameters.AddWithValue("intCalories", newFoodItem.intCalories);
+
+            if (newFoodItem.strBrandName == null)
+                cmd.Parameters.AddWithValue("strBrandName", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("strBrandName", newFoodItem.strBrandName);
+
+            int result = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            if (result == 1)
+                return true;
+            else
+                return false;
+        }
+
         public static FoodItem GetFoodItemByID(int intFoodItemID)
         {
             FoodItem retval = null;

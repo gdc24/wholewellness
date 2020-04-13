@@ -60,6 +60,31 @@ namespace wholewellness.Controllers
             return PartialView("_HealthierOptionsResults", model);
         }
 
+        public ActionResult AddFoodItem()
+        {
+            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+
+            AddFoodItemVM model = new AddFoodItemVM
+            {
+                user = user
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult PostNewFoodItem(FoodItem newFoodItem)
+        {
+
+            bool success = FoodItemDAL.AddFoodItem(newFoodItem);
+
+            if (success)
+                RedirectToAction("AddMeal");
+            else
+                throw new Exception("error adding food item");
+
+            return null;
+        }
+
 
         public ActionResult AddMeal()
         {
