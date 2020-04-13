@@ -33,8 +33,7 @@
             <div class="sidebar-heading-2">Workouts</div>
             <div class="list-group list-group-flush">
                 @Html.ActionLink("Add A Workout", "AddWorkout", "Workout", null, new { @class = "list-group-item list-group-item-action bg-light" })
-                <a href="#" class="list-group-item list-group-item-action bg-light">Search</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">View</a>
+                @Html.ActionLink("View Workouts", "WorkoutHome", "Workout", null, new { @class = "list-group-item list-group-item-action bg-light" })
                 @Html.ActionLink("Add Exercise Type", "AddExerciseType", "Workout", null, new { @class = "list-group-item list-group-item-action bg-light" })
             </div>
             <br />

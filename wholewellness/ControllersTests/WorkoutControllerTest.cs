@@ -30,7 +30,8 @@ namespace wholewellness.ControllersTests
             var controller = new WorkoutController();
 
             // Arrange
-            var result = controller.AddExercise();
+            var result = controller.AddWorkout();
+        }
 
         //    // Assert
         //    Assert.IsNotNull(result);

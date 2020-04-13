@@ -83,8 +83,7 @@ namespace wholewellness.Controllers
                     user = user,
                     currentDayForUser = currentDay,
                     intPassedCurrentDayID = currentDay.intDayID,
-                    intPassedUserID = user.intUserID,
-                    possibleWorkouts = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(currentDay.intDayID,user.intUserID)
+                    intPassedUserID = user.intUserID
                 };
 
                 model._results_vm.possibleExercises = new List<ExerciseType>();
