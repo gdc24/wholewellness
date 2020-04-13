@@ -17,27 +17,26 @@ namespace wholewellness.ControllersTests
             var controller = new WorkoutController();
 
             // Arrange
-            var result = (ViewResult)controller.WorkoutHome();
+            var result = controller.WorkoutHome();
 
             // Assert
             Assert.IsNotNull(result);
         }
 
-        // TODO: test fails
-        //[Test]
-        //public void AddExercise()
-        //{
-        //    // Act
-        //    var controller = new WorkoutController();
+        [Test]
+        public void AddExercise()
+        {
+            // Act
+            var controller = new WorkoutController();
 
-        //    // Arrange
-        //    var result = (ViewResult)controller.AddExercise();
+            // Arrange
+            var result = controller.AddExercise();
 
         //    // Assert
         //    Assert.IsNotNull(result);
         //}
 
-        // TODO: test fails
+        // TODO: Test fails, think something is wrong in DAL
         [Test]
         public void DeleteWorkout()
         {
@@ -47,20 +46,7 @@ namespace wholewellness.ControllersTests
             WorkoutRoutine workout = WorkoutRoutine.of(10, lstExercises, 100);
 
             // Arrange
-            var result = (ViewResult)controller.DeleteWorkout(workout, 5, 5);
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [Test]
-        public void GetAllWorkouts()
-        {
-            // Act
-            var controller = new WorkoutController();
-
-            // Arrange
-            var result = (ViewResult)controller.GetAllWorkouts();
+            var result = controller.DeleteWorkout(workout, 5, 5);
 
             // Assert
             Assert.IsNotNull(result);

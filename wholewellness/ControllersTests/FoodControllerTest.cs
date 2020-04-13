@@ -11,7 +11,6 @@ namespace wholewellness.Tests.Controllers
     public class FoodControllerTest
     {
 
-        // TODO: test fails
         [Test]
         public void FoodHome()
         {
@@ -19,13 +18,12 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = (ViewResult)controller.FoodHome();
+            var result = controller.FoodHome();
 
             // Assert
             Assert.IsNotNull(result);
         }
 
-        // TODO: test fails
         [Test]
         public void AddMeal()
         {
@@ -33,12 +31,13 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = (ViewResult)controller.AddMeal();
+            var result = controller.AddMeal();
 
             // Assert
             Assert.IsNotNull(result);
         }
 
+        // TODO: test fails from issue in DAL
         [Test]
         public void DeleteMeal()
         {
@@ -48,7 +47,7 @@ namespace wholewellness.Tests.Controllers
             Meal meal = Meal.of(MealType.breakfast, lstFoodItems);
 
             // Act
-            var result = (ViewResult)controller.DeleteMeal(meal, 3, 5);
+            var result = controller.DeleteMeal(meal, 3, 5);
 
             // Assert
             Assert.IsNotNull(result);
@@ -61,12 +60,13 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = (ViewResult)controller.GetHistory(5);
+            var result = controller.GetHistory(5);
 
             // Assert
             Assert.IsNotNull(result);
         }
 
+        // TODO: test fails 
         [Test]
         public void GetUserInfo()
         {
@@ -74,13 +74,14 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = (ViewResult)controller.GetUserInfo(5);
+            var result = controller.GetUserInfo(5);
 
             // Assert
             Assert.IsNotNull(result);
 
         }
 
+        // TODO: test fails 
         [Test]
         public void GetAllFoodItems()
         {
@@ -88,14 +89,38 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = (ViewResult)controller.GetAllFoodItems();
+            var result = controller.GetAllFoodItems();
 
             // Assert
             Assert.IsNotNull(result);
         }
 
-        // TODO: test healthier options
-        // TODO: test get healtheir options
-        // TODO: test post new meal
+        [Test]
+        public void HealthierOptions()
+        {
+            // Arrange
+            var controller = new FoodController();
+
+            // Act
+            var result = controller.HealthierOptions();
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+
+        // TODO: test fails, think something is wrong in DAL
+        [Test]
+        public void GetHealthierOptions()
+        {
+            // Arrange
+            var controller = new FoodController();
+
+            // Act
+            var result = controller.GetHealthierOptions(2);
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

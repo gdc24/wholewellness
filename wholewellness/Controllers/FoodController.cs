@@ -11,7 +11,6 @@ namespace wholewellness.Controllers
     public class FoodController : Controller
     {
 
-        // GET: Food
         public ActionResult Index()
         {
             return RedirectToAction("FoodHome");

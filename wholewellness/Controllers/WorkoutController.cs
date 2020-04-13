@@ -83,7 +83,8 @@ namespace wholewellness.Controllers
                     user = user,
                     currentDayForUser = currentDay,
                     intPassedCurrentDayID = currentDay.intDayID,
-                    intPassedUserID = user.intUserID
+                    intPassedUserID = user.intUserID,
+                    possibleWorkouts = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(currentDay.intDayID,user.intUserID)
                 };
 
                 model._results_vm.possibleExercises = new List<ExerciseType>();
@@ -156,17 +157,6 @@ namespace wholewellness.Controllers
             WorkoutHomeVM model = new WorkoutHomeVM()
             {
                 LstWorkoutRoutines = WorkoutRoutineDAL.GetWorkoutsByDayAndUser(intDayID, intUserID).Where(w => w != workout)
-            };
-            return View("WorkoutHome", model);
-        }
-
-
-        // TODO: finish
-        public ActionResult GetAllWorkouts()
-        {
-            AddWorkoutVM model = new AddWorkoutVM()
-            {
-                // possibleExercises = WorkoutRoutineDAL.GetAllPossibleExercises
             };
             return View("WorkoutHome", model);
         }
