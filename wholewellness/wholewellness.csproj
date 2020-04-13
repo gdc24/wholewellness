@@ -173,8 +173,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Exercise\ExerciseHome.cshtml" />
-    <Content Include="Views\Exercise\AddWorkout.cshtml" />
+    <Content Include="Views\Workout\ExerciseHome.cshtml" />
+    <Content Include="Views\Workout\AddWorkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\wholewellnessforwomenCreates.sql" />
@@ -184,7 +184,7 @@
     <Content Include="Views\Food\_HealthierOptionsResults.cshtml" />
     <Content Include="Views\Home\NewUser.cshtml" />
     <Content Include="Views\Food\AddFoodItem.cshtml" />
-    <Content Include="Views\Exercise\AddExercise.cshtml" />
+    <Content Include="Views\Workout\AddExerciseType.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -29,6 +29,17 @@ namespace wholewellness.Controllers
             return View("WorkoutHome", model);
         }
 
+        public ActionResult AddExerciseType()
+        {
+            User user = UserDAL.GetUser(HomeController.USER_NUMBER);
+
+            AddExerciseTypeVM model = new AddExerciseTypeVM()
+            {
+                user = user
+            };
+            return View(model);
+        }
+
 
         // TODO: finish
         public ActionResult AddExercise()

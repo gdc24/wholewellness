@@ -7,14 +7,14 @@
 
 <div class="ml-5 mt-5 pl-5 mr-5 pt-4 border-wrapper">
 
-    <h2>Add a food item:</h2>
+    <h2>Add a new exercise to the database:</h2>
 
 
     @using (Html.BeginForm("PostNewExerciseType", "Workout", FormMethod.Post))
     {
         <div class="container">
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Name:</h6>
                 </div>
                 <div class="col">
@@ -23,25 +23,25 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Muscle Group:</h6>
                 </div>
                 <div class="col">
-                    @Html.EnumDropDownListFor(m => m.lstMuscleGroups, "Select Muscle Groups", new { @multiple = "multiple", @class = "form-control col-2 meal-type-dropdown" })
+                    @Html.EnumDropDownListFor(m => m.muscleGroup, "Select Muscle Group", new { @class = "form-control meal-type-dropdown" })
                 </div>
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Equipment Needed:</h6>
                 </div>
                 <div class="col">
-                    @Html.EnumDropDownListFor(m => m.lstEquipment, "Select Equipment", new { @multiple = "multiple", @class = "form-control col-2 meal-type-dropdown" })
+                    @Html.EnumDropDownListFor(m => m.equipment, "Select Equipment", new { @class = "form-control meal-type-dropdown" })
                 </div>
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Calories Burned:</h6>
                 </div>
                 <div class="col">
@@ -50,7 +50,7 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Is it accessible?</h6>
                 </div>
                 <div class="col">
@@ -59,7 +59,7 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Time in Minutes:</h6>
                 </div>
                 <div class="col">
@@ -68,11 +68,11 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-2">
+                <div class="col-6">
                     <h6>Intensity:</h6>
                 </div>
                 <div class="col">
-                    @Html.EnumDropDownListFor(m => m.intensity, "Select Intensity", new { @class = "form-control col-2 meal-type-dropdown" })
+                    @Html.EnumDropDownListFor(m => m.intensity, "Select Intensity", new { @class = "form-control meal-type-dropdown" })
                 </div>
             </div>
         </div>

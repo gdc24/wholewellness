@@ -15,13 +15,20 @@ namespace wholewellness.DAL
             string strName = dr["strName"].ToString();
             int intCaloriesBurned = Convert.ToInt32(dr["intCaloriesBurned"]);
             bool ysnAccessibility = Convert.ToBoolean(dr["ysnAccessibility"]);
-            List<MuscleGroup> lstMuscleGroups = GetMuscleGroupList(intExerciseTypeID);
-            Intensity intensity = GetIntensity(dr["intensity"]); //(Intensity)Enum.Parse(typeof(Intensity), dr["intensity"].ToString());
+            MuscleGroup muscleGroup = (MuscleGroup)Enum.Parse(typeof(MuscleGroup), dr["muscleGroup"].ToString());
+            Equipment equipment = (Equipment)Enum.Parse(typeof(Equipment), dr["equipment"].ToString());
+            Intensity intensity = GetIntensity(dr["intensity"]);
             int intTime = Convert.ToInt32(dr["intTime"]);
 
-            ExerciseType foodItem = ExerciseType.of(lstMuscleGroups, strName, intCaloriesBurned, ysnAccessibility, intensity, intTime);
+            ExerciseType foodItem = ExerciseType.of(muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
 
             return foodItem;
+        }
+
+        private static List<Equipment> GetEquipmentList(int intExerciseTypeID)
+        {
+            //TODO
+            throw new NotImplementedException();
         }
 
         internal static List<ExerciseType> GetExercisesByWorkout(int intWorkoutRoutineID)

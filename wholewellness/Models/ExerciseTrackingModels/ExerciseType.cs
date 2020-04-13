@@ -11,8 +11,8 @@ namespace wholewellness.Models.ExerciseTrackingModels
         [Display(Name = "Exercise Type ID")]
         public int intExerciseTypeID { get; set; }
 
-        [Display(Name = "Muscle Groups")]
-        public List<MuscleGroup> lstMuscleGroups { get; set; }
+        [Display(Name = "Muscle Group")]
+        public MuscleGroup muscleGroup { get; set; }
 
         [Display(Name = "Name")]
         public string strName { get; set; }
@@ -27,42 +27,42 @@ namespace wholewellness.Models.ExerciseTrackingModels
         public Intensity intensity { get; set; }
 
         [Display(Name = "Equipment")]
-        public List<Equipment> lstEquipment { get; set; }
+        public Equipment equipment { get; set; }
 
         [Display(Name = "Time")]
         public int intTime { get; set; }
 
-        private ExerciseType(List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, List<Equipment> lstEquipment, int intTime)
+        private ExerciseType(MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)
         {
-            this.lstMuscleGroups = lstMuscleGroups;
+            this.muscleGroup = muscleGroup;
             this.strName = strName;
             this.intCaloriesBurned = intCaloriesBurned;
             this.ysnAccessibility = ysnAccessibility;
             this.intensity = intensity;
-            this.lstEquipment = lstEquipment;
+            this.equipment = equipment;
             this.intTime = intTime;
         }
 
-        public static ExerciseType of(List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, List<Equipment> lstEquipment, int intTime)
+        public static ExerciseType of(MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)
         {
-            return new ExerciseType(lstMuscleGroups, strName, intCaloriesBurned, ysnAccessibility, intensity, lstEquipment, intTime);
+            return new ExerciseType(muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
         }
 
-        private ExerciseType(int intExerciseTypeID, List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, List<Equipment> lstEquipment, int intTime)
+        private ExerciseType(int intExerciseTypeID, MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)
         {
             this.intExerciseTypeID = intExerciseTypeID;
-            this.lstMuscleGroups = lstMuscleGroups;
+            this.muscleGroup = muscleGroup;
             this.strName = strName;
             this.intCaloriesBurned = intCaloriesBurned;
             this.ysnAccessibility = ysnAccessibility;
             this.intensity = intensity;
-            this.lstEquipment = lstEquipment;
+            this.equipment = equipment;
             this.intTime = intTime;
         }
 
-        public static ExerciseType of(int intExerciseTypeID, List<MuscleGroup> lstMuscleGroups, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, List<Equipment> lstEquipment, int intTime)
+        public static ExerciseType of(int intExerciseTypeID, MuscleGroup muscleGroup, string strName, int intCaloriesBurned, bool ysnAccessibility, Intensity intensity, Equipment equipment, int intTime)
         {
-            return new ExerciseType(intExerciseTypeID, lstMuscleGroups, strName, intCaloriesBurned, ysnAccessibility, intensity, lstEquipment, intTime);
+            return new ExerciseType(intExerciseTypeID, muscleGroup, strName, intCaloriesBurned, ysnAccessibility, intensity, equipment, intTime);
         }
 
         public ExerciseType() { }
