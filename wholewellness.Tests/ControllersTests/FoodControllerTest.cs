@@ -31,7 +31,7 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = controller.AddMeal();
+            var result =  controller.AddMeal();
 
             // Assert
             Assert.IsNotNull(result);
@@ -46,7 +46,7 @@ namespace wholewellness.Tests.Controllers
             Meal meal = Meal.of(MealType.breakfast, lstFoodItems);
 
             // Act
-            var result = controller.DeleteMeal(meal, 3, 5);
+            var result = = controller.DeleteMeal(meal, 3, 5);
 
             // Assert
             Assert.IsNotNull(result);
@@ -59,7 +59,7 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = controller.GetHistory(5);
+            var result =  controller.GetHistory(5);
 
             // Assert
             Assert.IsNotNull(result);
@@ -99,7 +99,7 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = controller.HealthierOptions();
+            var result =  controller.HealthierOptions();
 
             // Assert
             Assert.IsNotNull(result);
@@ -113,7 +113,7 @@ namespace wholewellness.Tests.Controllers
             var controller = new FoodController();
 
             // Act
-            var result = controller.GetHealthierOptions(2);
+            var result =  controller.GetHealthierOptions(2);
 
             // Assert
             Assert.IsNotNull(result);

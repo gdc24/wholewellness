@@ -33,6 +33,10 @@ namespace wholewellness.ControllersTests
             var result = controller.AddWorkout();
         }
 
+        //    // Assert
+        //    Assert.IsNotNull(result);
+        //}
+
 
         [Test]
         public void DeleteWorkout()

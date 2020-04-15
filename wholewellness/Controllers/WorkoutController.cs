@@ -65,8 +65,6 @@ namespace wholewellness.Controllers
                 throw new Exception("error adding exercise type");
         }
 
-
-        // TODO: finish
         public ActionResult AddWorkout()
         {
             if (HomeController.USER_NUMBER == -1)
