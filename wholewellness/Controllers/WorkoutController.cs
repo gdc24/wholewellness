@@ -60,7 +60,7 @@ namespace wholewellness.Controllers
             bool success = ExerciseTypeDAL.AddExerciseType(newExercise);
 
             if (success)
-                return RedirectToAction("AddExercise");
+                return RedirectToAction("AddExerciseType");
             else
                 throw new Exception("error adding exercise type");
         }
