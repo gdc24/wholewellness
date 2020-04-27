@@ -13,6 +13,7 @@ function postNewWorkout() {
         }
     });
 
+    checkedExercises = checkedExercises.filter(x => x != undefined);
     console.log(checkedExercises);
 
     RerouteAjaxCall('/Workout/PostNewWorkout', JSON.stringify(checkedExercises), 'POST').done(function (response) {

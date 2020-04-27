@@ -179,6 +179,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="sql\wholewellnessforwomenCreates.sql" />
+    <Content Include="Views\Food\AddFoodItem.cshtml" />
+    <Content Include="Views\Food\AddMeal.cshtml" />
+    <Content Include="Views\Food\FoodHome.cshtml" />
+    <Content Include="Views\Food\HealthierOptions.cshtml" />
+    <Content Include="Views\Food\_HealthierOptionsResults.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\NewUser.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Workout\AddExerciseType.cshtml" />
+    <Content Include="Views\Workout\AddWorkout.cshtml" />
+    <Content Include="Views\Workout\WorkoutHome.cshtml" />
+    <Content Include="Views\Workout\_ExerciseSearchResults.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
